@@ -1,0 +1,5 @@
+<form {{on "submit" this.authenticate}}>
+  <Input type="email" @value={{this.email}} placeholder="Email" />
+  <Input type="password" @value={{this.password}} placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
