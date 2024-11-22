@@ -1,0 +1,19 @@
+<div class="login-modal-container" {{on "click" this.closeLoginModal}}>
+  <div class="login-modal-content" {{on "click" this.stopPropagation}}>
+    <div class="login-modal-title">Welcome back</div>
+
+    <form class="login-modal-form" {{on "submit" this.authenticate}}>
+      <label for="email">Email</label>
+      <Input @type="email" @value={{this.email}} />
+      <label for="password">Password</label>
+      <Input @type="password" @value={{this.password}} />
+      <button class="login-modal-submit-button" type="submit">
+        Login
+      </button>
+    </form>
+
+    <div class="login-modal-close-button" {{on "click" this.closeLoginModal}}>
+      <i class="bi bi-x-lg"></i>
+    </div>
+  </div>
+</div>
