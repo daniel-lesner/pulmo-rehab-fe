@@ -1,15 +1,15 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 
-@import "header.css";
-@import "components/login-modal.css";
+@import 'header.css';
+@import 'components/login-modal.css';
 
-@import "bootstrap";
+@import 'bootstrap';
 
 body {
   margin: 0;
   font-family:
-    "Inter var",
-    "Inter web",
+    'Inter var',
+    'Inter web',
     -apple-system,
     BlinkMacSystemFont,
     Segoe UI,
