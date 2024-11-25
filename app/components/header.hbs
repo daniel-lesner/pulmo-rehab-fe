@@ -1,20 +1,24 @@
-<div class="header-container">
-  <LinkTo class="header-title" @route="index">Pulmo Rehab</LinkTo>
+<div class='header-container'>
+  <LinkTo class='header-title' @route='index'>Pulmo Rehab</LinkTo>
 
-  <div class="header-menu">
+  <div class='header-menu'>
     {{#if this.session.isAuthenticated}}
-      <LinkTo @route="my-account">
-        <i class="bi bi-person-circle"></i>
+      <LinkTo @route='my-account'>
+        <i class='bi bi-person-circle'></i>
         <span>My Account</span>
       </LinkTo>
-      <LinkTo @route="dashboard">
-        <i class="bi bi-layout-sidebar"></i>
+      <LinkTo @route='dashboard'>
+        <i class='bi bi-layout-sidebar'></i>
         <span>Dashboard</span>
       </LinkTo>
-      <div class="header-menu-button" {{on "click" this.logOut}}>Log Out</div>
+      <div class='header-menu-button' {{on 'click' this.logOut}}>Log Out</div>
     {{else}}
-      <div class="header-menu-button" {{on "click" this.openLoginModal}}>Log In</div>
-      <div class="header-menu-button">Register</div>
+      <div class='header-menu-button' {{on 'click' this.openLoginModal}}>Log In</div>
+      <div class='header-menu-button'>
+        <LinkTo @route='register'>
+          Register
+        </LinkTo>
+      </div>
     {{/if}}
   </div>
 </div>
