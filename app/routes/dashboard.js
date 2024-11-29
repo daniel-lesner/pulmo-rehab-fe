@@ -1,23 +1,10 @@
-import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import AuthenticatedRoute from './authenticated';
 
-export default class DashboardRoute extends Route {
-  @service session;
+export default class DashboardRoute extends AuthenticatedRoute {
   @service store;
 
-  @service router;
-
-  beforeModel(transition) {
-    if (!this.session.isAuthenticated) {
-      this.session.attemptedTransition = transition;
-    }
-  }
-
   model() {
-    if (!this.session.isAuthenticated) {
-      return { isAuthenticated: false };
-    } else {
-      return this.store.createRecord('dashboard');
-    }
+    return this.store.createRecord('dashboard');
   }
 }
