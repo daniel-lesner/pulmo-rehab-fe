@@ -1,0 +1,24 @@
+<div>
+  <div>Register</div>
+  <form {{on 'submit' this.handleRegister}}>
+    <div>
+      <label for='name'>Name</label>
+      <Input @type='text' @value={{this.model.name}} />
+    </div>
+    <div>
+      <label for='email'>Email</label>
+      <Input @type='email' @value={{this.model.email}} />
+    </div>
+    <div>
+      <label for='password'>Password</label>
+      <Input @type='password' @value={{this.model.password}} />
+    </div>
+
+    {{#if this.isFormLoading}}
+      <div class='spinner'></div>
+    {{else}}
+      <button type='submit'>Submit</button>
+    {{/if}}
+
+  </form>
+</div>

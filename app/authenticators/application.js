@@ -5,6 +5,15 @@ export default class ApplicationAuthenticator extends EmberSimpleAuthBaseAuthent
   @service store;
 
   async authenticate(params) {
+    if (params.isFromRegister) {
+      return {
+        id: params.id,
+        userId: params.userId,
+        email: params.email,
+        passwordToken: params.passwordToken,
+      };
+    }
+
     const session = this.store.createRecord('session', params);
     await session.save();
 

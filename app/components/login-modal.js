@@ -23,7 +23,6 @@ export default class LoginModalComponent extends Component {
       this.closeLoginModal();
       this.router.transitionTo('my-account');
     } catch (error) {
-      debugger;
       alert('Authentication failed, please check your credentials.');
     }
   }
