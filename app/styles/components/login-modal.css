@@ -8,9 +8,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .login-modal-content {
+  position: fixed;
   height: 400px;
   width: 650px;
   max-width: 80%;
@@ -18,16 +24,19 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgba(251, 221, 175, 0.271);
+  background: rgb(255, 255, 255);
   border: 1px solid rgba(146, 146, 146, 0.621);
   border-radius: 20px;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .login-modal-title {
-  padding-top: 20px;
+  padding-top: 30px;
   margin-bottom: 80px;
+  font-size: 24px;
 }
 
 .login-modal-form {
