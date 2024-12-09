@@ -1,0 +1,16 @@
+<div class='login-modal-container' {{on 'click' this.closeModal}}>
+  <div class='login-modal-content' {{on 'click' this.stopPropagation}}>
+    <div class='login-modal-title'>Welcome back</div>
+
+    <form class='login-modal-form' {{on 'submit' this.createBracelet}}>
+      <Input type='text' @value={{this.name}} placeholder='Name' />
+      <Input type='text' @value={{this.brand}} placeholder='Brand' />
+      <Input type='text' @value={{this.apiKey}} placeholder='API Key' />
+      <button type='submit'>Add bracelet</button>
+    </form>
+
+    <div class='login-modal-close-button' {{on 'click' this.closeModal}}>
+      <i class='bi bi-x-lg'></i>
+    </div>
+  </div>
+</div>

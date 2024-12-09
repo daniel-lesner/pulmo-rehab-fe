@@ -1,0 +1,20 @@
+<div class='bracelet-card'>
+  <div class='bracelet-card-body'>
+    <h4 class='bracelet-name'>{{@model.name}}</h4>
+    <p class='bracelet-brand'>
+      <span>{{@model.brand}}</span>
+      Brand
+    </p>
+    <p class='bracelet-api'>
+      API Key:
+      <span class='masked-api'>{{this.maskedApiKey}}</span>
+    </p>
+    <button
+      class='btn delete-button'
+      {{on 'click' (fn this.deleteBracelet @model.id)}}
+      aria-label='Delete Bracelet'
+    >
+      <i class='bi bi-trash text-danger'></i>
+    </button>
+  </div>
+</div>

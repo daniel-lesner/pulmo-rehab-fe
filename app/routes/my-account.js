@@ -8,6 +8,7 @@ export default class MyAccountRoute extends AuthenticatedRoute {
     return this.store.findRecord(
       'user',
       this.session.data.authenticated.userId,
+      { include: 'bracelets' },
     );
   }
 }

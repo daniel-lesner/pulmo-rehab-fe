@@ -1,8 +1,10 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 
 @import url('header.css');
+@import url('my-account.css');
 @import url('register.css');
 @import url('components/login-modal.css');
+@import url('components/bracelet-card.css');
 @import url('bootstrap');
 
 body {
@@ -26,4 +28,5 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 150px;
+  margin-bottom: 50px;
 }

@@ -1,2 +1,21 @@
-<h1>My Account</h1>
-<p>Welcome, {{this.model.name}}!</p>
+<h1>My Bracelets</h1>
+<p>You don't have any bracelets connected to your account.</p>
+<p>You can add one by pressing the button below!</p>
+
+<h2>Bracelets:</h2>
+
+<div class='bracelet-grid'>
+  {{#each this.model.bracelets as |bracelet|}}
+    <BraceletCard @model={{bracelet}} @deleteBracelet={{this.deleteBracelet}} />
+  {{/each}}
+</div>
+
+<button
+  id='openModalBtn'
+  class='plus-button'
+  {{on 'click' this.openBraceletFormModal}}
+>+</button>
+
+{{#if this.isBraceletFormModalOpen}}
+  <BraceletFormModal @closeModal={{this.closeBraceletFormModal}} />
+{{/if}}
