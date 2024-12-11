@@ -9,6 +9,9 @@ module.exports = function (defaults) {
       importBootstrapCSS: false,
       insertEmberWormholeElementToDom: false,
     },
+    sassOptions: {
+      extension: 'scss',
+    },
   });
 
   app.import('node_modules/bootstrap/dist/css/bootstrap.min.css');

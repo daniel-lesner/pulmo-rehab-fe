@@ -1,10 +1,11 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 
-@import url('header.css');
-@import url('my-account.css');
-@import url('register.css');
-@import url('components/login-modal.css');
-@import url('components/bracelet-card.css');
+@import 'header';
+@import 'my-account';
+@import 'register';
+// @import 'components/login-modal';
+// @import 'components/bracelet-card';
+@import 'components/bracelet-form-modal';
 
 body {
   margin: 0;
