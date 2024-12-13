@@ -3,8 +3,8 @@
 @import 'header';
 @import 'my-account';
 @import 'register';
-// @import 'components/login-modal';
-// @import 'components/bracelet-card';
+@import 'components/login-modal';
+@import 'components/bracelet-card';
 @import 'components/bracelet-form-modal';
 
 body {
@@ -27,6 +27,6 @@ body {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 75px;
   margin-bottom: 50px;
 }

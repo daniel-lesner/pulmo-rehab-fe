@@ -1,4 +1,4 @@
-.login-modal-container {
+.bracelet-form-modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,9 +16,9 @@
     visibility 0.3s ease;
 }
 
-.login-modal-content {
+.bracelet-form-modal-content {
   position: fixed;
-  height: 400px;
+  height: 450px;
   width: 650px;
   max-width: 80%;
   display: flex;
@@ -35,13 +35,13 @@
     visibility 0.3s ease;
 }
 
-.login-modal-title {
-  padding-top: 30px;
-  margin-bottom: 80px;
+.bracelet-form-modal-title {
+  padding-top: 25px;
+  margin-bottom: 40px;
   font-size: 24px;
 }
 
-.login-modal-form {
+.bracelet-form-modal-form {
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@
   }
 }
 
-.login-modal-submit-button {
+.bracelet-form-modal-submit-button {
   height: 32px;
   border: none;
   border-radius: 14px;
@@ -75,7 +75,7 @@
   }
 }
 
-.login-modal-close-button {
+.bracelet-form-modal-close-button {
   margin: 10px 20px;
   padding: 5px;
   position: absolute;

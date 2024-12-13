@@ -24,7 +24,7 @@ export default class RegisterController extends Controller {
         id: user.password,
         userId: user.id,
         email: user.email,
-        password: user.password,
+        passwordToken: user.passwordToken,
         isFromRegister: true,
       });
 

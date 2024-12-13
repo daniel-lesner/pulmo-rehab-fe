@@ -6,6 +6,7 @@ export default class BraceletFormModalComponent extends Component {
   @service router;
   @service store;
   @service session;
+  @service toast;
 
   name = '';
   brand = '';
@@ -26,14 +27,10 @@ export default class BraceletFormModalComponent extends Component {
     event.preventDefault();
 
     try {
-      const userId = this.session.data.authenticated.userId;
-      const user = await this.store.findRecord('user', userId);
-
       const bracelet = this.store.createRecord('bracelet', {
         name: this.name,
         brand: this.brand,
         apiKey: this.apiKey,
-        user: user,
       });
 
       await bracelet.save();
@@ -42,7 +39,7 @@ export default class BraceletFormModalComponent extends Component {
 
       this.args.closeModal();
     } catch (error) {
-      alert('Authentication failed, please check your credentials.');
+      this.toast.error('Something went wrong, please try again.');
     }
   }
 }

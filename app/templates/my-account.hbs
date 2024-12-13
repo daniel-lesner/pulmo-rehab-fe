@@ -1,14 +1,21 @@
-<h1>My Bracelets</h1>
-<p>You don't have any bracelets connected to your account.</p>
-<p>You can add one by pressing the button below!</p>
+<h1>Patients List</h1>
 
-<h2>Bracelets:</h2>
+{{#if this.model.bracelets}}
+  <p>Use the buttons below to add or remove patients from your list.</p>
 
-<div class='bracelet-grid'>
-  {{#each this.model.bracelets as |bracelet|}}
-    <BraceletCard @model={{bracelet}} @deleteBracelet={{this.deleteBracelet}} />
-  {{/each}}
-</div>
+  <div class='bracelet-grid'>
+    {{#each this.model.bracelets as |bracelet|}}
+      <BraceletCard
+        @model={{bracelet}}
+        @deleteBracelet={{this.deleteBracelet}}
+      />
+    {{/each}}
+  </div>
+
+{{else}}
+  <p>You don't have any patients connected to your account.</p>
+  <p>You can add one by pressing the button below!</p>
+{{/if}}
 
 <button
   id='openModalBtn'

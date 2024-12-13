@@ -6,6 +6,7 @@ export default class LoginModalComponent extends Component {
   @service session;
   @service router;
   @service store;
+  @service toast;
 
   email = '';
   password = '';
@@ -23,7 +24,7 @@ export default class LoginModalComponent extends Component {
       this.closeLoginModal();
       this.router.transitionTo('my-account');
     } catch (error) {
-      alert('Authentication failed, please check your credentials.');
+      this.toast.error('Authentication failed, please check your credentials.');
     }
   }
 
