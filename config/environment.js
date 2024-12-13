@@ -46,6 +46,7 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.APP.API_HOST = 'https://pulmo-rehab-api.onrender.com';
   }
 
   return ENV;
