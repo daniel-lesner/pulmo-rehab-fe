@@ -1,5 +1,6 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 
+@import 'index';
 @import 'header';
 @import 'my-account';
 @import 'register';
@@ -27,8 +28,6 @@ body {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin-top: 75px;
-  margin-bottom: 50px;
 }
 
 .spinner {
