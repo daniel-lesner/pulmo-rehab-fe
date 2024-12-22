@@ -12,4 +12,5 @@ export default class SessionModel extends Model {
   @attr('string') email;
   @attr('string') password;
   @attr('string') passwordToken;
+  @attr('boolean') isDoctor;
 }

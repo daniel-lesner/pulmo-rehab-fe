@@ -11,6 +11,9 @@ export default class RegisterController extends Controller {
 
   @tracked isFormLoading = false;
 
+  queryParams = ['isDoctor'];
+  @tracked isDoctor = false;
+
   @action
   async handleRegister(event) {
     event.preventDefault();
@@ -18,7 +21,9 @@ export default class RegisterController extends Controller {
     this.isFormLoading = true;
 
     try {
-      const user = await this.model.save();
+      const user = this.isDoctor
+        ? await this.model.doctor.save()
+        : await this.model.patient.save();
 
       await this.session.authenticate('authenticator:application', {
         id: user.password,
@@ -26,6 +31,7 @@ export default class RegisterController extends Controller {
         email: user.email,
         passwordToken: user.passwordToken,
         isFromRegister: true,
+        isDoctor: this.isDoctor,
       });
 
       this.toast.success('User has been created succesfully', 'Success');

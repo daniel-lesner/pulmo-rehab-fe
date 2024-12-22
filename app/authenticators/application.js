@@ -11,6 +11,7 @@ export default class ApplicationAuthenticator extends EmberSimpleAuthBaseAuthent
         userId: params.userId,
         email: params.email,
         passwordToken: params.passwordToken,
+        isDoctor: params.isDoctor,
       };
     }
 
@@ -22,6 +23,7 @@ export default class ApplicationAuthenticator extends EmberSimpleAuthBaseAuthent
       userId: session.userId,
       email: session.email,
       passwordToken: session.passwordToken,
+      isDoctor: session.isDoctor,
     };
   }
 

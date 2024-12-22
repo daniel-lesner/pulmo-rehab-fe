@@ -5,6 +5,9 @@ export default class RegisterRoute extends Route {
   @service store;
 
   model() {
-    return this.store.createRecord('user');
+    return {
+      patient: this.store.createRecord('user'),
+      doctor: this.store.createRecord('doctor'),
+    };
   }
 }

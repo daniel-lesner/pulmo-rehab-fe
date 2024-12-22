@@ -2,12 +2,23 @@
   <div class='register-title'>Register</div>
 
   <form class='register-form' {{on 'submit' this.handleRegister}}>
-    <label for='name'>Name</label>
-    <Input @type='text' @value={{this.model.name}} />
-    <label for='email'>Email</label>
-    <Input @type='email' @value={{this.model.email}} />
-    <label for='password'>Password</label>
-    <Input @type='password' @value={{this.model.password}} />
+    {{#if this.isDoctor}}
+      <label for='name'>Name</label>
+      <Input @type='text' @value={{this.model.doctor.name}} />
+      <label for='email'>Email</label>
+      <Input @type='email' @value={{this.model.doctor.email}} />
+      <label for='password'>Password</label>
+      <Input @type='password' @value={{this.model.doctor.password}} />
+      <label for='key'>Registration Key</label>
+      <Input @type='text' @value={{this.model.doctor.registrationKey}} />
+    {{else}}
+      <label for='name'>Name</label>
+      <Input @type='text' @value={{this.model.patient.name}} />
+      <label for='email'>Email</label>
+      <Input @type='email' @value={{this.model.patient.email}} />
+      <label for='password'>Password</label>
+      <Input @type='password' @value={{this.model.patient.password}} />
+    {{/if}}
 
     {{#if this.isFormLoading}}
       <div class='spinner'></div>
