@@ -15,9 +15,9 @@ export default class RegisterController extends Controller {
   async handleRegister(event) {
     event.preventDefault();
 
-    try {
-      this.isFormLoading = true;
+    this.isFormLoading = true;
 
+    try {
       const user = await this.model.save();
 
       await this.session.authenticate('authenticator:application', {
@@ -31,9 +31,10 @@ export default class RegisterController extends Controller {
       this.toast.success('User has been created succesfully', 'Success');
       this.router.transitionTo('index');
     } catch (error) {
-      this.isFormLoading = false;
       this.model.rollbackAttributes();
       this.toast.error('Something went wrong, please try again', 'Error');
+    } finally {
+      this.isFormLoading = false;
     }
   }
 }
