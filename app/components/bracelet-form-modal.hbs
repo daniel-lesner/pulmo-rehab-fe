@@ -1,6 +1,6 @@
 <div class='bracelet-form-modal-container' {{on 'click' this.closeModal}}>
   <div class='bracelet-form-modal-content' {{on 'click' this.stopPropagation}}>
-    <div class='bracelet-form-modal-title'>Welcome back</div>
+    <div class='bracelet-form-modal-title'>Add to Patient List</div>
 
     <form class='bracelet-form-modal-form' {{on 'submit' this.createBracelet}}>
       <label for='email'>Patient's Name</label>
@@ -17,7 +17,7 @@
       class='bracelet-form-modal-close-button'
       {{on 'click' this.closeModal}}
     >
-      <i class='bi bi-x-lg'></i>
+      <Icon::X @fillColor='red' />
     </div>
   </div>
 </div>

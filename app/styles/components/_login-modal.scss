@@ -63,15 +63,15 @@
   border: none;
   border-radius: 14px;
   color: white;
-  background-color: blue;
+  background-color: rgb(147, 129, 255);
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(1, 1, 200);
+    background-color: rgb(129, 107, 254);
   }
 
   &:active {
-    background-color: rgb(1, 1, 125);
+    background-color: rgb(72, 40, 252);
   }
 }
 
@@ -80,7 +80,6 @@
   padding: 5px;
   position: absolute;
   font-size: 28px;
-  color: red;
   right: 0;
   top: 0;
   cursor: pointer;
