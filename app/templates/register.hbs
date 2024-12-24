@@ -20,10 +20,22 @@
       <Input @type='password' @value={{this.model.patient.password}} />
     {{/if}}
 
+    <label class='register-agreement'>
+      <Input @type='checkbox' @checked={{this.isPrivacyPolicyAgreed}} />
+      <span class='register-agreement-message'>
+        I agree to the website's
+        <LinkTo @route='privacy-policy'>Privacy Policy</LinkTo>
+      </span>
+    </label>
+
     {{#if this.isFormLoading}}
       <div class='spinner'></div>
     {{else}}
-      <button class='register-form-submit-button' type='submit'>Submit</button>
+      <button
+        class='register-form-submit-button'
+        type='submit'
+        disabled={{not this.isPrivacyPolicyAgreed}}
+      >Submit</button>
     {{/if}}
 
   </form>

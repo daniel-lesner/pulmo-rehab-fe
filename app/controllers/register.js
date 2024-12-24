@@ -9,10 +9,11 @@ export default class RegisterController extends Controller {
   @service store;
   @service toast;
 
+  @tracked isDoctor = false;
   @tracked isFormLoading = false;
+  @tracked isPrivacyPolicyAgreed = false;
 
   queryParams = ['isDoctor'];
-  @tracked isDoctor = false;
 
   @action
   async handleRegister(event) {

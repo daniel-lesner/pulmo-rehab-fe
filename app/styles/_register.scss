@@ -34,6 +34,23 @@
   }
 }
 
+.register-agreement {
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  input[type='checkbox'] {
+    margin-top: 0px;
+    margin-right: 5px;
+    transform: scale(1.2);
+  }
+}
+
+.register-agreement-message {
+  align-self: center;
+}
+
 .register-form-submit-button {
   height: 32px;
   border: none;
@@ -48,6 +65,11 @@
 
   &:active {
     background-color: rgb(72, 40, 252);
+  }
+
+  &:disabled {
+    background-color: rgb(242, 240, 254);
+    cursor: default;
   }
 }
 
