@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-export default class YHeader extends Component {
+export default class Header extends Component {
   @service router;
   @service session;
 
