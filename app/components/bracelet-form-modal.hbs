@@ -1,12 +1,21 @@
 <div class='bracelet-form-modal-container' {{on 'click' this.closeModal}}>
   <div class='bracelet-form-modal-content' {{on 'click' this.stopPropagation}}>
-    <div class='bracelet-form-modal-title'>Add to Patient List</div>
+    <div class='bracelet-form-modal-title'>Add a new bracelet</div>
 
     <form class='bracelet-form-modal-form' {{on 'submit' this.createBracelet}}>
-      <label for='email'>Patient's Name</label>
+      <label for='email'>Bracelet Name</label>
       <Input type='text' @value={{this.name}} />
-      <label for='email'>Bracelet</label>
-      <Input type='text' @value={{this.brand}} />
+      <label for='brand'>Bracelet Brandl</label>
+      <select
+        value={{this.brand}}
+        {{on 'change' (action (mut this.brand) value='target.value')}}
+      >
+        {{#each this.brandOptions as |brand|}}
+          <option value={{brand}}>{{brand}}</option>
+        {{/each}}
+      </select>
+      <label for='email'>Bracelet Model</label>
+      <Input type='text' @value={{this.model}} />
       <label for='email'>API Key</label>
       <Input type='text' @value={{this.apiKey}} />
       <button class='bracelet-form-modal-submit-button' type='submit'>Add

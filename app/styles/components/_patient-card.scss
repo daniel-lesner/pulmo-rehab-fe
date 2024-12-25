@@ -1,51 +1,29 @@
-.bracelet-card {
+.patient-card {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  max-width: 350px;
+  width: 250px;
+  height: 150px;
   margin: 20px auto;
 }
 
-.bracelet-card-body {
+.patient-card-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.bracelet-name {
+.patient-name {
   font-size: 20px;
   font-weight: bold;
 }
 
-.bracelet-brand,
-.bracelet-model {
+.patient-bracelet-brand {
   font-size: 16px;
   color: #555;
-}
-
-.bracelet-api {
-  font-size: 14px;
-  color: #666;
-  padding-bottom: 15px;
-}
-
-.masked-api {
-  font-family: monospace;
-  background: rgba(0, 0, 0, 0.1);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-.dashboard-link {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
 
 .delete-button {
@@ -61,11 +39,9 @@
   color: red;
 }
 
-.go-to-dashboar {
+.patient-go-to-dashboard {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
+  padding: 10px;
 }

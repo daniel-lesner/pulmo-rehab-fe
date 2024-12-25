@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
@@ -8,9 +9,12 @@ export default class BraceletFormModalComponent extends Component {
   @service session;
   @service toast;
 
+  @tracked brand = 'Garmin';
+
   name = '';
-  brand = '';
+  model = '';
   apiKey = '';
+  brandOptions = ['Garmin', 'Huawei', 'Fitbit'];
 
   @action
   closeModal() {
@@ -30,6 +34,7 @@ export default class BraceletFormModalComponent extends Component {
       const bracelet = this.store.createRecord('bracelet', {
         name: this.name,
         brand: this.brand,
+        model: this.model,
         apiKey: this.apiKey,
       });
 

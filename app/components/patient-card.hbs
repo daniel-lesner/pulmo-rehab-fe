@@ -1,0 +1,22 @@
+<div class='patient-card'>
+  <div class='patient-card-body'>
+    <h4 class='patient-name'>{{@patient.name}}</h4>
+    <p class='patient-bracelet-name'>
+      <span>{{@bracelet.name}} - {{@bracelet.brand}}: {{@bracelet.model}}</span>
+    </p>
+    <LinkTo
+      class='patient-go-to-dashboard'
+      @route='dashboard'
+      @query={{hash braceletId=@bracelet.id}}
+    >
+      <BsIcon @name='box-arrow-right' />
+    </LinkTo>
+    <button
+      class='btn delete-button'
+      {{on 'click' (fn this.removePatient @patient.id)}}
+      aria-label='Remove Patient'
+    >
+      <BsIcon @name='trash' class='text-danger' />
+    </button>
+  </div>
+</div>

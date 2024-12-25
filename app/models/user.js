@@ -1,4 +1,4 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class UserModel extends Model {
   @attr('string') email;
@@ -7,4 +7,5 @@ export default class UserModel extends Model {
   @attr('string') passwordToken;
 
   @hasMany('bracelet', { async: true, inverse: null }) bracelets;
+  @belongsTo('doctor', { async: false, inverse: null }) doctor;
 }

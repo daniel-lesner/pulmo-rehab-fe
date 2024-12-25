@@ -1,27 +1,77 @@
-<h1>Patients List</h1>
+{{#if this.isDoctor}}
+  <h1 class='my-account-title'>Patients List</h1>
 
-{{#if this.model.bracelets}}
-  <p>Use the buttons below to add or remove patients from your list.</p>
+  {{#if this.model.users}}
+    <p>Use the buttons below to add or remove patients from your list.</p>
+  {{else}}
+    <p>You don't have any patients connected to your account.</p>
+    <p>You can add one by pressing the button below!</p>
 
-  <div class='bracelet-grid'>
-    {{#each this.model.bracelets as |bracelet|}}
-      <BraceletCard
-        @model={{bracelet}}
-        @deleteBracelet={{this.deleteBracelet}}
-      />
-    {{/each}}
-  </div>
+    <select
+      class='my-account-patient-select'
+      value={{this.selectedUserId}}
+      {{on 'change' (action (mut this.selectedUserId) value='target.value')}}
+    >
+      <option disabled selected value=''>-- Select a patient --</option>
+      {{#each this.model.unassignedUsers as |user|}}
+        <option value={{user.id}}>{{user.name}}</option>
+      {{/each}}
+    </select>
 
+    <button
+      class='dashboard-submit-button'
+      type='button'
+      {{on 'click' this.assignDoctor}}
+    >
+      Assign
+    </button>
+  {{/if}}
+
+  {{#each this.model.assignedUsers as |user|}}
+    {{#if user.bracelets}}
+      <div class='bracelet-grid'>
+        {{#each user.bracelets as |bracelet|}}
+          <PatientCard
+            @patient={{user}}
+            @bracelet={{bracelet}}
+            @removePatient={{this.removePatient}}
+          />
+        {{/each}}
+      </div>
+    {{/if}}
+  {{/each}}
 {{else}}
-  <p>You don't have any patients connected to your account.</p>
-  <p>You can add one by pressing the button below!</p>
+  <h1 class='my-account-title'>Bracelets List</h1>
+
+  {{#if this.model.bracelets}}
+    <p>Use the buttons below to add or remove bracelets from your list.</p>
+
+    <div class='bracelet-grid'>
+      {{#each this.model.bracelets as |bracelet|}}
+        <BraceletCard
+          @model={{bracelet}}
+          @deleteBracelet={{this.deleteBracelet}}
+        />
+      {{/each}}
+    </div>
+
+  {{else}}
+    <p>You don't have any bracelets connected to your account.</p>
+    <p>You can add one by pressing the button below!</p>
+  {{/if}}
+
+  <button
+    id='openModalBtn'
+    class='plus-button'
+    {{on 'click' this.openBraceletFormModal}}
+  >
+    +
+  </button>
 {{/if}}
 
-<button
-  id='openModalBtn'
-  class='plus-button'
-  {{on 'click' this.openBraceletFormModal}}
->+</button>
+{{#if this.isPatientFormModalOpen}}
+  <PatientFormModal @closeModal={{this.closePatientFormModal}} />
+{{/if}}
 
 {{#if this.isBraceletFormModalOpen}}
   <BraceletFormModal @closeModal={{this.closeBraceletFormModal}} />
