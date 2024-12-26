@@ -13,7 +13,8 @@ export default class BraceletFormModalComponent extends Component {
 
   name = '';
   model = '';
-  apiKey = '';
+  token = '';
+  tokenSecret = '';
   brandOptions = ['Garmin', 'Huawei', 'Fitbit'];
 
   @action
@@ -35,7 +36,8 @@ export default class BraceletFormModalComponent extends Component {
         name: this.name,
         brand: this.brand,
         model: this.model,
-        apiKey: this.apiKey,
+        token: this.token,
+        tokenSecret: this.tokenSecret,
       });
 
       await bracelet.save();
