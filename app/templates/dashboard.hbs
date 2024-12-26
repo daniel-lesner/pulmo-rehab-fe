@@ -1,7 +1,55 @@
 <h1>My Dashboard</h1>
-{{!-- {{#if this.session.isAuthenticated}}
-  <p>Welcome, {{this.model.name}}!</p>
+
+{{#if this.isDataLoading}}
+  <div class='spinner'></div>
 {{else}}
-  <p>You are not authenticated.</p>
-  <button type="button" {{on "click" this.goHome}}>Return to Home</button>
-{{/if}} --}}
+  <div class='dashboard-container'>
+    <div class='header-controls'>
+      <div>
+        <label for='date-selection'>Type:</label>
+        <select id='data-selection' {{on 'change' this.onDataTypeSelect}}>
+          <option
+            value='heartRate'
+            selected={{eq this.selectedDataType 'heartRate'}}
+          >Heart Rate</option>
+          <option
+            value='stress'
+            selected={{eq this.selectedDataType 'stress'}}
+          >Stress</option>
+          <option
+            value='spo2'
+            selected={{eq this.selectedDataType 'spo2'}}
+          >SpO2</option>
+          <option
+            value='respiration'
+            selected={{eq this.selectedDataType 'respiration'}}
+          >Respiration</option>
+        </select>
+      </div>
+
+      <div>
+        <label for='date-picker'>Date:</label>
+        <Input
+          id='date-picker'
+          @value={{this.selectedDate}}
+          @type='date'
+          {{on 'change' this.onDateChange}}
+        />
+      </div>
+
+      <button class='dashboard-submit-button' {{on 'click' this.getData}}>Get
+        Data</button>
+
+    </div>
+
+    {{#if this.chartData}}
+      <div style='width: 800px; height: 400px'>
+        <EmberChart @type='line' @data={{this.chartData}} />
+      </div>
+    {{else}}
+
+      <p class='dashboard-info'>No heart rate data available. Click "Get Data"
+        to fetch it.</p>
+    {{/if}}
+  </div>
+{{/if}}
