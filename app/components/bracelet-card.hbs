@@ -11,11 +11,11 @@
     </p>
     <p class='bracelet-api'>
       Token:
-      <span class='masked-api'>{{this.maskedToken}}</span>
+      <span class='masked-api'>{{mask-credentials @model.token}}</span>
     </p>
     <p class='bracelet-api'>
       Token Secret:
-      <span class='masked-api'>{{this.maskedTokenSecret}}</span>
+      <span class='masked-api'>{{mask-credentials @model.tokenSecret}}</span>
     </p>
     <button
       class='btn delete-button'
