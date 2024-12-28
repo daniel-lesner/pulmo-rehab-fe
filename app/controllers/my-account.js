@@ -10,7 +10,7 @@ export default class MyAccountController extends Controller {
   @service toast;
 
   @tracked isBraceletFormModalOpen = false;
-  @tracked selectedUserId = null;
+  @tracked selectedUserId = '';
 
   isDoctor = this.session.data.authenticated.isDoctor;
 
@@ -32,6 +32,7 @@ export default class MyAccountController extends Controller {
     user.save().then(() => {
       this.toast.success('Patient associated correctly');
       this.router.refresh();
+      this.selectedUserId = '';
     });
   }
 

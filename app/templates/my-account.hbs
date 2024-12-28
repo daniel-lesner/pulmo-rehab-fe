@@ -19,7 +19,11 @@
     {{/each}}
   </select>
 
-  <SubmitButton @title='Assign' @onClick={{this.assignDoctor}} />
+  <SubmitButton
+    @title='Assign'
+    @onClick={{this.assignDoctor}}
+    @disabled={{not this.selectedUserId}}
+  />
 
   {{#each this.model.assignedUsers as |user|}}
     {{#if user.bracelets}}
