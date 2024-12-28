@@ -1,0 +1,23 @@
+.submit-button {
+  font-size: 16px;
+  min-height: 32px;
+  min-width: 80px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  background-color: rgb(147, 129, 255);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgb(129, 107, 254);
+  }
+
+  &:active {
+    background-color: rgb(72, 40, 252);
+  }
+
+  &:disabled {
+    background-color: rgb(242, 240, 254);
+    cursor: default;
+  }
+}

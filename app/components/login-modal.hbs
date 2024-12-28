@@ -7,9 +7,7 @@
       <Input @type='email' @value={{this.email}} />
       <label for='password'>Password</label>
       <Input @type='password' @value={{this.password}} />
-      <button class='login-modal-submit-button' type='submit'>
-        Login
-      </button>
+      <SubmitButton @title='Login' />
     </form>
 
     <div class='login-modal-close-button' {{on 'click' this.closeLoginModal}}>

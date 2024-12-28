@@ -18,13 +18,8 @@
       {{/each}}
     </select>
 
-    <button
-      class='dashboard-submit-button'
-      type='button'
-      {{on 'click' this.assignDoctor}}
-    >
-      Assign
-    </button>
+    <SubmitButton @title='Assign' @onClick={{this.assignDoctor}} />
+
   {{/if}}
 
   {{#each this.model.assignedUsers as |user|}}

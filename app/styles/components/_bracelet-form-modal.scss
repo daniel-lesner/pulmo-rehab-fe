@@ -58,23 +58,6 @@
   }
 }
 
-.bracelet-form-modal-submit-button {
-  height: 32px;
-  border: none;
-  border-radius: 14px;
-  color: white;
-  background-color: rgb(147, 129, 255);
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgb(129, 107, 254);
-  }
-
-  &:active {
-    background-color: rgb(72, 40, 252);
-  }
-}
-
 .bracelet-form-modal-close-button {
   margin: 10px 20px;
   padding: 5px;

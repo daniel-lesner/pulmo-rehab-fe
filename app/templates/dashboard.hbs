@@ -37,9 +37,7 @@
         />
       </div>
 
-      <button class='dashboard-submit-button' {{on 'click' this.getData}}>Get
-        Data</button>
-
+      <SubmitButton @title='Get Data' />
     </div>
 
     {{#if this.chartData}}

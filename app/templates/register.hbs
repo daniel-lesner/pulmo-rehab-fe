@@ -31,11 +31,10 @@
     {{#if this.isFormLoading}}
       <div class='spinner'></div>
     {{else}}
-      <button
-        class='register-form-submit-button'
-        type='submit'
-        disabled={{not this.isPrivacyPolicyAgreed}}
-      >Submit</button>
+      <SubmitButton
+        @title='Submit'
+        @disabled={{not this.isPrivacyPolicyAgreed}}
+      />
     {{/if}}
 
   </form>
