@@ -1,26 +1,25 @@
 {{#if this.isDoctor}}
   <h1 class='my-account-title'>Patients List</h1>
 
-  {{#if this.model.users}}
+  {{#if this.model.assignedUsers}}
     <p>Use the buttons below to add or remove patients from your list.</p>
   {{else}}
     <p>You don't have any patients connected to your account.</p>
     <p>You can add one by pressing the button below!</p>
-
-    <select
-      class='my-account-patient-select'
-      value={{this.selectedUserId}}
-      {{on 'change' (action (mut this.selectedUserId) value='target.value')}}
-    >
-      <option disabled selected value=''>-- Select a patient --</option>
-      {{#each this.model.unassignedUsers as |user|}}
-        <option value={{user.id}}>{{user.name}}</option>
-      {{/each}}
-    </select>
-
-    <SubmitButton @title='Assign' @onClick={{this.assignDoctor}} />
-
   {{/if}}
+
+  <select
+    class='my-account-patient-select'
+    value={{this.selectedUserId}}
+    {{on 'change' (action (mut this.selectedUserId) value='target.value')}}
+  >
+    <option disabled selected value=''>-- Select a patient --</option>
+    {{#each this.model.unassignedUsers as |user|}}
+      <option value={{user.id}}>{{user.name}}</option>
+    {{/each}}
+  </select>
+
+  <SubmitButton @title='Assign' @onClick={{this.assignDoctor}} />
 
   {{#each this.model.assignedUsers as |user|}}
     {{#if user.bracelets}}
