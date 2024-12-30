@@ -39,6 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  align-self: center;
 
   input[type='checkbox'] {
     margin-top: 0px;
