@@ -5,8 +5,9 @@
     <form class='bracelet-form-modal-form' {{on 'submit' this.createBracelet}}>
       <label for='email'>Bracelet Name</label>
       <Input type='text' @value={{this.name}} />
-      <label for='brand'>Bracelet Brandl</label>
+      <label for='brand'>Bracelet Brand</label>
       <select
+        class='select-field'
         value={{this.brand}}
         {{on 'change' (action (mut this.brand) value='target.value')}}
       >

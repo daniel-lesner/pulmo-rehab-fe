@@ -8,16 +8,18 @@
     <p>You can add one by pressing the button below!</p>
   {{/if}}
 
-  <select
-    class='my-account-patient-select'
-    value={{this.selectedUserId}}
-    {{on 'change' (action (mut this.selectedUserId) value='target.value')}}
-  >
-    <option disabled selected value=''>-- Select a patient --</option>
-    {{#each this.model.unassignedUsers as |user|}}
-      <option value={{user.id}}>{{user.name}}</option>
-    {{/each}}
-  </select>
+  <form class='my-account-form'>
+    <select
+      class='select-field'
+      value={{this.selectedUserId}}
+      {{on 'change' (action (mut this.selectedUserId) value='target.value')}}
+    >
+      <option disabled selected value=''>-- Select a patient --</option>
+      {{#each this.model.unassignedUsers as |user|}}
+        <option value={{user.id}}>{{user.name}}</option>
+      {{/each}}
+    </select>
+  </form>
 
   <SubmitButton
     @title='Assign'
