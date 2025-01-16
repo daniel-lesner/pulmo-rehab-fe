@@ -12,6 +12,7 @@ export default class DashboardController extends Controller {
   @tracked chartData = null;
   @tracked isDataLoading = false;
   @tracked selectedDataType = 'heartRate';
+  @tracked selectedTimeIntervalInMinutes = 60;
 
   queryParams = ['braceletId'];
 
@@ -39,6 +40,7 @@ export default class DashboardController extends Controller {
         braceletId: this.braceletId,
         dataType: this.selectedDataType,
         date: this.selectedDate,
+        timeIntervalInMinutes: this.selectedTimeIntervalInMinutes,
       });
 
       await this.bracelet.save();
@@ -65,12 +67,15 @@ export default class DashboardController extends Controller {
   @action
   onDataTypeSelect(event) {
     this.selectedDataType = event.target.value;
-    this.getData(event);
   }
 
   @action
   onDateChange(event) {
     this.selectedDate = event.target.value;
-    this.getData(event);
+  }
+
+  @action
+  onTimeIntervalInMinutesChange(event) {
+    this.selectedTimeIntervalInMinutes = event.target.value;
   }
 }

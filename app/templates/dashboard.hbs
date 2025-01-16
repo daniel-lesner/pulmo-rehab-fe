@@ -1,53 +1,83 @@
-<h1>My Dashboard</h1>
+<h1 class='dashboard-title'>My Dashboard</h1>
 
-{{#if this.isDataLoading}}
-  <div class='spinner'></div>
-{{else}}
-  <div class='dashboard-container'>
-    <div class='header-controls'>
-      <div>
-        <label for='date-selection'>Type:</label>
-        <select id='data-selection' {{on 'change' this.onDataTypeSelect}}>
-          <option
-            value='heartRate'
-            selected={{eq this.selectedDataType 'heartRate'}}
-          >Heart Rate</option>
-          <option
-            value='stress'
-            selected={{eq this.selectedDataType 'stress'}}
-          >Stress</option>
-          <option
-            value='spo2'
-            selected={{eq this.selectedDataType 'spo2'}}
-          >SpO2</option>
-          <option
-            value='respiration'
-            selected={{eq this.selectedDataType 'respiration'}}
-          >Respiration</option>
-        </select>
-      </div>
+<hr class='horizontal-fade' />
 
-      <div>
-        <label for='date-picker'>Date:</label>
-        <Input
-          id='date-picker'
-          @value={{this.selectedDate}}
-          @type='date'
-          {{on 'change' this.onDateChange}}
-        />
-      </div>
+<div class='dashboard-layout'>
+  <div class='dashboard-left-menu'>
+    <SubmitButton @title='Generate' @onClick={{this.getData}} />
 
-      <SubmitButton @title='Get Data' />
-    </div>
+    <label for='date-picker'>Date:</label>
+    <Input
+      id='date-picker'
+      class='select-field'
+      @value={{this.selectedDate}}
+      @type='date'
+      {{on 'change' this.onDateChange}}
+    />
 
-    {{#if this.chartData}}
-      <div style='width: 800px; height: 400px'>
-        <EmberChart @type='line' @data={{this.chartData}} />
-      </div>
+    <label for='time-interval'>Interval:</label>
+    <select
+      id='time-interval'
+      class='select-field'
+      {{on 'change' this.onTimeIntervalInMinutesChange}}
+    >
+      <option
+        value={{60}}
+        selected={{eq this.selectedTimeIntervalInMinutes '60'}}
+      >Hourly</option>
+      <option
+        value={{30}}
+        selected={{eq this.selectedTimeIntervalInMinutes '30'}}
+      >30 mins</option>
+      <option
+        value={{15}}
+        selected={{eq this.selectedTimeIntervalInMinutes '15'}}
+      >15 mins</option>
+      <option
+        value={{2}}
+        selected={{eq this.selectedTimeIntervalInMinutes '2'}}
+      >2 mins</option>
+    </select>
+
+    <label for='data-selection'>Type:</label>
+    <select
+      id='data-selection'
+      class='select-field'
+      {{on 'change' this.onDataTypeSelect}}
+    >
+      <option
+        value='heartRate'
+        selected={{eq this.selectedDataType 'heartRate'}}
+      >Heart Rate</option>
+      <option
+        value='stress'
+        selected={{eq this.selectedDataType 'stress'}}
+      >Stress</option>
+      <option
+        value='spo2'
+        selected={{eq this.selectedDataType 'spo2'}}
+      >SpO2</option>
+      <option
+        value='respiration'
+        selected={{eq this.selectedDataType 'respiration'}}
+      >Respiration</option>
+    </select>
+  </div>
+
+  <div class='vertical-fade'></div>
+  <div class='dashboard-right-content'>
+    {{#if this.isDataLoading}}
+      <div class='spinner'></div>
     {{else}}
-
-      <p class='dashboard-info'>No heart rate data available. Click "Get Data"
-        to fetch it.</p>
+      {{#if this.chartData}}
+        <div class='dashboard-chart'>
+          <EmberChart @type='line' @data={{this.chartData}} />
+        </div>
+      {{else}}
+        <p class='dashboard-info'>No data available. Click "Generate" to fetch
+          it.</p>
+      {{/if}}
     {{/if}}
   </div>
-{{/if}}
+
+</div>

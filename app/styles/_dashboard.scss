@@ -1,26 +1,50 @@
-.dashboard-container {
-  padding: 10px;
-  border: 2px grey solid;
+.dashboard-title {
+  margin: 20px;
+}
+
+.horizontal-fade {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #000, transparent);
+  width: calc(100% - 240px);
+}
+
+.dashboard-layout {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 20px;
+}
+
+.dashboard-left-menu {
+  position: fixed;
+  left: 50px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.vertical-fade {
+  margin: 20px 0;
+  border: 0;
+  height: 100x;
+  width: 100px;
+  background: linear-gradient(to right, transparent, #ccc, transparent);
+}
+
+.dashboard-right-content {
+  flex: 1;
+  border: 2px solid grey;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.dashboard-chart {
+  width: 800px;
+  height: 400px;
 }
 
 .dashboard-info {
   text-align: center;
-}
-
-.header-controls {
-  margin: 20px 0;
-  display: flex;
-  gap: 75px;
-}
-
-.header-controls label {
-  font-weight: bold;
-}
-
-.header-controls select,
-.header-controls input[type='date'] {
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
 }
