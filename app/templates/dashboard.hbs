@@ -33,10 +33,17 @@
         value={{15}}
         selected={{eq this.selectedTimeIntervalInMinutes '15'}}
       >15 mins</option>
-      <option
-        value={{2}}
-        selected={{eq this.selectedTimeIntervalInMinutes '2'}}
-      >2 mins</option>
+      {{#if this.shouldShowThreeMinInterval}}
+        <option
+          value={{3}}
+          selected={{eq this.selectedTimeIntervalInMinutes '3'}}
+        >3 mins</option>
+      {{else}}
+        <option
+          value={{2}}
+          selected={{eq this.selectedTimeIntervalInMinutes '2'}}
+        >2 mins</option>
+      {{/if}}
     </select>
 
     <label for='data-selection'>Type:</label>
@@ -53,6 +60,10 @@
         value='stress'
         selected={{eq this.selectedDataType 'stress'}}
       >Stress</option>
+      <option
+        value='bodyBatteryLevel'
+        selected={{eq this.selectedDataType 'bodyBatteryLevel'}}
+      >Body Battery Level</option>
       <option
         value='spo2'
         selected={{eq this.selectedDataType 'spo2'}}

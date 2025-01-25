@@ -24,6 +24,10 @@ export default class DashboardController extends Controller {
       .replace(/^\w/, (c) => c.toUpperCase());
   }
 
+  get shouldShowThreeMinInterval() {
+    return ['stress', 'bodyBatteryLevel'].includes(this.selectedDataType);
+  }
+
   @action
   goHome() {
     this.router.transitionTo('index');
@@ -67,6 +71,16 @@ export default class DashboardController extends Controller {
   @action
   onDataTypeSelect(event) {
     this.selectedDataType = event.target.value;
+
+    if (this.shouldShowThreeMinInterval) {
+      if (this.selectedTimeIntervalInMinutes === '2') {
+        this.selectedTimeIntervalInMinutes = '3';
+      }
+    } else {
+      if (this.selectedTimeIntervalInMinutes === '3') {
+        this.selectedTimeIntervalInMinutes = '2';
+      }
+    }
   }
 
   @action
