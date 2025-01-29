@@ -24,6 +24,16 @@ export default class DashboardController extends Controller {
       .replace(/^\w/, (c) => c.toUpperCase());
   }
 
+  get shouldShowTimeInterval() {
+    return [
+      'heartRate',
+      'stress',
+      'bodyBatteryLevel',
+      'spo2',
+      'respiration',
+    ].includes(this.selectedDataType);
+  }
+
   get shouldShowThreeMinInterval() {
     return ['stress', 'bodyBatteryLevel'].includes(this.selectedDataType);
   }

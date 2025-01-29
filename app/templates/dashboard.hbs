@@ -15,37 +15,6 @@
       {{on 'change' this.onDateChange}}
     />
 
-    <label for='time-interval'>Interval:</label>
-    <select
-      id='time-interval'
-      class='select-field'
-      {{on 'change' this.onTimeIntervalInMinutesChange}}
-    >
-      <option
-        value={{60}}
-        selected={{eq this.selectedTimeIntervalInMinutes '60'}}
-      >Hourly</option>
-      <option
-        value={{30}}
-        selected={{eq this.selectedTimeIntervalInMinutes '30'}}
-      >30 mins</option>
-      <option
-        value={{15}}
-        selected={{eq this.selectedTimeIntervalInMinutes '15'}}
-      >15 mins</option>
-      {{#if this.shouldShowThreeMinInterval}}
-        <option
-          value={{3}}
-          selected={{eq this.selectedTimeIntervalInMinutes '3'}}
-        >3 mins</option>
-      {{else}}
-        <option
-          value={{2}}
-          selected={{eq this.selectedTimeIntervalInMinutes '2'}}
-        >2 mins</option>
-      {{/if}}
-    </select>
-
     <label for='data-selection'>Type:</label>
     <select
       id='data-selection'
@@ -75,6 +44,39 @@
         selected={{eq this.selectedDataType 'respiration'}}
       >Respiration</option>
     </select>
+
+    {{#if this.shouldShowTimeInterval}}
+      <label for='time-interval'>Interval:</label>
+      <select
+        id='time-interval'
+        class='select-field'
+        {{on 'change' this.onTimeIntervalInMinutesChange}}
+      >
+        <option
+          value={{60}}
+          selected={{eq this.selectedTimeIntervalInMinutes '60'}}
+        >Hourly</option>
+        <option
+          value={{30}}
+          selected={{eq this.selectedTimeIntervalInMinutes '30'}}
+        >30 mins</option>
+        <option
+          value={{15}}
+          selected={{eq this.selectedTimeIntervalInMinutes '15'}}
+        >15 mins</option>
+        {{#if this.shouldShowThreeMinInterval}}
+          <option
+            value={{3}}
+            selected={{eq this.selectedTimeIntervalInMinutes '3'}}
+          >3 mins</option>
+        {{else}}
+          <option
+            value={{2}}
+            selected={{eq this.selectedTimeIntervalInMinutes '2'}}
+          >2 mins</option>
+        {{/if}}
+      </select>
+    {{/if}}
   </div>
 
   <div class='vertical-fade'></div>
