@@ -1,0 +1,109 @@
+<div class='stats-table'>
+  <h2 class='stats-table-title'>Daily Stats</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric Name</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class='metric-name'>BMR Kilocalories</td>
+        <td class='metric-data'>{{@model.bmrKilocalories}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Steps</td>
+        <td class='metric-data'>{{@model.steps}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Distance (meters)</td>
+        <td class='metric-data'>{{@model.distanceInMeters}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Active Time (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.activeTimeInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Moderate Intensity Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.moderateIntensityDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Vigorous Intensity Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.vigorousIntensityDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Min Heart Rate (BPM)</td>
+        <td class='metric-data'>{{@model.minHeartRateInBeatsPerMinute}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Max Heart Rate (BPM)</td>
+        <td class='metric-data'>{{@model.maxHeartRateInBeatsPerMinute}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Average Heart Rate (BPM)</td>
+        <td class='metric-data'>{{@model.averageHeartRateInBeatsPerMinute}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Resting Heart Rate (BPM)</td>
+        <td class='metric-data'>{{@model.restingHeartRateInBeatsPerMinute}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Steps Goal</td>
+        <td class='metric-data'>{{@model.stepsGoal}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Intensity Duration Goal (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.intensityDurationGoalInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Floors Climbed Goal</td>
+        <td class='metric-data'>{{@model.floorsClimbedGoal}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Average Stress Level</td>
+        <td class='metric-data'>{{@model.averageStressLevel}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Max Stress Level</td>
+        <td class='metric-data'>{{@model.maxStressLevel}}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Stress Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.stressDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Rest Stress Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.restStressDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Activity Stress Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.activityStressDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Low Stress Duration (Minutes)</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.lowStressDurationInSeconds
+          }}</td>
+      </tr>
+      <tr>
+        <td class='metric-name'>Stress Qualifier</td>
+        <td class='metric-data'>{{@model.stressQualifier}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

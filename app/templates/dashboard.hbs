@@ -22,6 +22,10 @@
       {{on 'change' this.onDataTypeSelect}}
     >
       <option
+        value='stats'
+        selected={{eq this.selectedDataType 'stats'}}
+      >Stats</option>
+      <option
         value='heartRate'
         selected={{eq this.selectedDataType 'heartRate'}}
       >Heart Rate</option>
@@ -84,10 +88,15 @@
     {{#if this.isDataLoading}}
       <div class='spinner'></div>
     {{else}}
-      {{#if this.chartData}}
-        <div class='dashboard-chart'>
-          <EmberChart @type='line' @data={{this.chartData}} />
-        </div>
+      {{#if this.data}}
+        {{#if (eq this.selectedDataType 'stats')}}
+          <StatsTable @model={{this.data}} />
+        {{else}}
+          <div class='dashboard-chart'>
+            <EmberChart @type='line' @data={{this.data}} />
+          </div>
+        {{/if}}
+
       {{else}}
         <p class='dashboard-info'>No data available. Click "Generate" to fetch
           it.</p>

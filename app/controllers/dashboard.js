@@ -9,9 +9,9 @@ export default class DashboardController extends Controller {
 
   @tracked bracelet = null;
   @tracked braceletId = null;
-  @tracked chartData = null;
+  @tracked data = null;
   @tracked isDataLoading = false;
-  @tracked selectedDataType = 'heartRate';
+  @tracked selectedDataType = 'stats';
   @tracked selectedTimeIntervalInMinutes = 60;
 
   queryParams = ['braceletId'];
@@ -59,18 +59,22 @@ export default class DashboardController extends Controller {
 
       await this.bracelet.save();
 
-      this.chartData = {
-        labels: Object.keys(this.bracelet.data),
-        datasets: [
-          {
-            label: this.title,
-            data: Object.values(this.bracelet.data),
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
-          },
-        ],
-      };
+      if (this.selectedDataType === 'stats') {
+        this.data = this.bracelet.data;
+      } else {
+        this.data = {
+          labels: Object.keys(this.bracelet.data),
+          datasets: [
+            {
+              label: this.title,
+              data: Object.values(this.bracelet.data),
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1,
+            },
+          ],
+        };
+      }
     } catch (error) {
       this.toast.error('Something went wrong, please try again.');
     } finally {
@@ -91,6 +95,8 @@ export default class DashboardController extends Controller {
         this.selectedTimeIntervalInMinutes = '2';
       }
     }
+
+    this.getData(event);
   }
 
   @action

@@ -1,0 +1,46 @@
+.stats-table {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  .stats-table-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background: #f4f4f4;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  .stats-metric-name {
+    font-weight: 500;
+    color: #555;
+  }
+
+  .stats-metric-data {
+    color: #777;
+  }
+}
