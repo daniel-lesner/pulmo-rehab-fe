@@ -47,6 +47,10 @@
         value='respiration'
         selected={{eq this.selectedDataType 'respiration'}}
       >Respiration</option>
+      <option
+        value='fitnessAge'
+        selected={{eq this.selectedDataType 'fitnessAge'}}
+      >Fitness Age</option>
     </select>
 
     {{#if this.shouldShowTimeInterval}}
@@ -91,6 +95,8 @@
       {{#if this.data}}
         {{#if (eq this.selectedDataType 'stats')}}
           <StatsTable @model={{this.data}} />
+        {{else if (eq this.selectedDataType 'fitnessAge')}}
+          <FitnessAgeCard @model={{this.data}} />
         {{else}}
           <div class='dashboard-chart'>
             <EmberChart @type='line' @data={{this.data}} />

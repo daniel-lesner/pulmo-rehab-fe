@@ -16,7 +16,7 @@ export default class DashboardController extends Controller {
 
   queryParams = ['braceletId'];
 
-  selectedDate = null;
+  selectedDate = new Date().toISOString().split('T')[0];
 
   get title() {
     return this.selectedDataType
@@ -59,7 +59,7 @@ export default class DashboardController extends Controller {
 
       await this.bracelet.save();
 
-      if (this.selectedDataType === 'stats') {
+      if (['stats', 'fitnessAge'].includes(this.selectedDataType)) {
         this.data = this.bracelet.data;
       } else {
         this.data = {
