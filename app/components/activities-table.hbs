@@ -1,0 +1,26 @@
+<div class='stats-table'>
+  <h2 class='stats-table-title'>Daily Stats</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Activity</th>
+        <th>Start Time (in minutes)</th>
+        <th>Duration (in minutes)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each @model as |entry|}}
+        <tr>
+          <td class='stats-metric-name'>{{entry.activityType}}</td>
+          <td class='stats-metric-data'>{{format-datetime
+              entry.startTimeInSeconds
+              entry.offsetInSeconds
+            }}</td>
+          <td class='stats-metric-name'>{{convert-seconds
+              entry.durationInSeconds
+            }}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
