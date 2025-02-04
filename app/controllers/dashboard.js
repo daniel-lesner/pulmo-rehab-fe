@@ -25,6 +25,8 @@ export default class DashboardController extends Controller {
       return 'Heart Rate Variability (ms)';
     } else if (this.selectedDataType === 'spo2') {
       return 'SpO2 %';
+    } else if (this.selectedDataType === 'respiration') {
+      return 'Respiration (RPM)';
     }
 
     return this.selectedDataType
