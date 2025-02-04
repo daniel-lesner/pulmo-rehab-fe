@@ -52,6 +52,10 @@
         selected={{eq this.selectedDataType 'activities'}}
       >Activities</option>
       <option
+        value='epochs'
+        selected={{eq this.selectedDataType 'epochs'}}
+      >Epochs</option>
+      <option
         value='fitnessAge'
         selected={{eq this.selectedDataType 'fitnessAge'}}
       >Fitness Age</option>
@@ -103,6 +107,8 @@
           <FitnessAgeCard @model={{this.data}} />
         {{else if (eq this.selectedDataType 'activities')}}
           <ActivitiesTable @model={{this.data}} />
+        {{else if (eq this.selectedDataType 'epochs')}}
+          <EpochsTable @model={{this.data}} />
         {{else}}
           <div class='dashboard-chart'>
             <EmberChart @type='line' @data={{this.data}} />

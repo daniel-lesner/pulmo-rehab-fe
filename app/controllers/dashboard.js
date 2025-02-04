@@ -56,7 +56,9 @@ export default class DashboardController extends Controller {
       await this.bracelet.save();
 
       if (
-        ['stats', 'fitnessAge', 'activities'].includes(this.selectedDataType)
+        ['stats', 'fitnessAge', 'activities', 'epochs'].includes(
+          this.selectedDataType,
+        )
       ) {
         this.data = this.bracelet.data;
       } else {

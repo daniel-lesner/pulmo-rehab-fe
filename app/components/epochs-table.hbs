@@ -1,0 +1,44 @@
+<div class='stats-table'>
+  <h2 class='stats-table-title'>Activity Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Activity</th>
+        <th>Start Time (in minutes)</th>
+        <th>Duration (in minutes)</th>
+        <th>Active Time (in minutes)</th>
+        <th>Steps</th>
+        <th>Distance (m)</th>
+        <th>Calories Burned</th>
+        <th>MET</th>
+        <th>Intensity</th>
+        <th>Mean Motion Intensity</th>
+        <th>Max Motion Intensity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each @model as |entry|}}
+        <tr>
+          <td class='stats-metric-name'>{{entry.activityType}}</td>
+          <td class='stats-metric-data'>{{format-datetime
+              entry.startTimeInSeconds
+              entry.startTimeOffsetInSeconds
+            }}</td>
+          <td class='stats-metric-data'>{{convert-seconds
+              entry.durationInSeconds
+            }}</td>
+          <td class='stats-metric-data'>{{convert-seconds
+              entry.activeTimeInSeconds
+            }}</td>
+          <td class='stats-metric-data'>{{entry.steps}}</td>
+          <td class='stats-metric-data'>{{entry.distanceInMeters}}</td>
+          <td class='stats-metric-data'>{{entry.activeKilocalories}}</td>
+          <td class='stats-metric-data'>{{entry.met}}</td>
+          <td class='stats-metric-data'>{{entry.intensity}}</td>
+          <td class='stats-metric-data'>{{entry.meanMotionIntensity}}</td>
+          <td class='stats-metric-data'>{{entry.maxMotionIntensity}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
