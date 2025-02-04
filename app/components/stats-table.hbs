@@ -1,5 +1,6 @@
 <div class='stats-table'>
   <h2 class='stats-table-title'>Daily Stats</h2>
+  <h2 class='stats-table-subtitle'>Last update at: {{this.lastUpdateAt}}</h2>
   <table>
     <thead>
       <tr>
@@ -21,19 +22,19 @@
         <td class='metric-data'>{{@model.distanceInMeters}}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Active Time (Minutes)</td>
+        <td class='metric-name'>Active Time (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.activeTimeInSeconds
           }}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Moderate Intensity Duration (Minutes)</td>
+        <td class='metric-name'>Moderate Intensity Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.moderateIntensityDurationInSeconds
           }}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Vigorous Intensity Duration (Minutes)</td>
+        <td class='metric-name'>Vigorous Intensity Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.vigorousIntensityDurationInSeconds
           }}</td>
@@ -59,7 +60,7 @@
         <td class='metric-data'>{{@model.stepsGoal}}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Intensity Duration Goal (Minutes)</td>
+        <td class='metric-name'>Intensity Duration Goal (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.intensityDurationGoalInSeconds
           }}</td>
@@ -77,25 +78,25 @@
         <td class='metric-data'>{{@model.maxStressLevel}}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Stress Duration (Minutes)</td>
+        <td class='metric-name'>Stress Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.stressDurationInSeconds
           }}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Rest Stress Duration (Minutes)</td>
+        <td class='metric-name'>Rest Stress Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.restStressDurationInSeconds
           }}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Activity Stress Duration (Minutes)</td>
+        <td class='metric-name'>Activity Stress Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.activityStressDurationInSeconds
           }}</td>
       </tr>
       <tr>
-        <td class='metric-name'>Low Stress Duration (Minutes)</td>
+        <td class='metric-name'>Low Stress Duration (minutes)</td>
         <td class='metric-data'>{{convert-seconds
             @model.lowStressDurationInSeconds
           }}</td>

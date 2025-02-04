@@ -19,6 +19,14 @@ export default class DashboardController extends Controller {
   selectedDate = new Date().toISOString().split('T')[0];
 
   get title() {
+    if (this.selectedDataType === 'heartRate') {
+      return 'Heart Rate (BPM)';
+    } else if (this.selectedDataType === 'hrv') {
+      return 'Heart Rate Variability (ms)';
+    } else if (this.selectedDataType === 'spo2') {
+      return 'SpO2 %';
+    }
+
     return this.selectedDataType
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       .replace(/^\w/, (c) => c.toUpperCase());
