@@ -1,0 +1,49 @@
+<div class='stats-table'>
+  <h2 class='stats-title'>Sleep Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Start Time</th>
+        <th>Total Sleep (hours)</th>
+        <th>Deep Sleep (minutes)</th>
+        <th>Light Sleep (minutes)</th>
+        <th>REM Sleep (minutes)</th>
+        <th>Awake Time (minutes)</th>
+        <th>Total Nap Duration (minutes)</th>
+        <th>Total Unmeasurable Time (in minutes)</th>
+        <th>Overall Sleep Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class='metric-data'>{{format-datetime
+            @model.startTimeInSeconds
+            @model.startTimeOffsetInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds-to-hours
+            @model.durationInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.deepSleepDurationInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.lightSleepDurationInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.remSleepInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.awakeDurationInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.totalNapDurationInSeconds
+          }}</td>
+        <td class='metric-data'>{{convert-seconds
+            @model.unmeasurableSleepInSeconds
+          }}</td>
+        <td class='metric-data'>{{@model.overallSleepScore.value}}
+          ({{@model.overallSleepScore.qualifierKey}})</td>
+      </tr>
+    </tbody>@
+  </table>
+</div>

@@ -1,0 +1,19 @@
+<div class='stats-table'>
+  <h2 class='stats-itle'>Sleep Scores</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each-in @sleepScores as |key value|}}
+        <tr>
+          <td class='metric-data'>{{key}}</td>
+          <td class='metric-data'>{{value.qualifierKey}}</td>
+        </tr>
+      {{/each-in}}
+    </tbody>
+  </table>
+</div>

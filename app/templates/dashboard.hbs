@@ -47,6 +47,10 @@
         selected={{eq this.selectedDataType 'respiration'}}
       >Respiration</option>
       <option
+        value='sleep'
+        selected={{eq this.selectedDataType 'sleep'}}
+      >Sleep</option>
+      <option
         value='activities'
         selected={{eq this.selectedDataType 'activities'}}
       >Activities</option>
@@ -108,6 +112,14 @@
           <ActivitiesTable @model={{this.data}} />
         {{else if (eq this.selectedDataType 'epochs')}}
           <EpochsTable @model={{this.data}} />
+        {{else if (eq this.selectedDataType 'sleep')}}
+          <SleepTable @model={{this.data}} />
+          <SleepScoresTable @sleepScores={{this.data.sleepScores}} />
+          <EmberChart @type='line' @data={{this.data.timeOffsetSleepSpo2}} />
+          <EmberChart
+            @type='line'
+            @data={{this.data.timeOffsetSleepRespiration}}
+          />
         {{else}}
           <div class='dashboard-chart'>
             <EmberChart @type='line' @data={{this.data}} />

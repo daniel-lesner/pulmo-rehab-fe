@@ -27,11 +27,11 @@ export default class DashboardController extends Controller {
       return 'SpO2 %';
     } else if (this.selectedDataType === 'respiration') {
       return 'Respiration (RPM)';
+    } else {
+      return this.selectedDataType
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/^\w/, (c) => c.toUpperCase());
     }
-
-    return this.selectedDataType
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .replace(/^\w/, (c) => c.toUpperCase());
   }
 
   get shouldShowTimeInterval() {
@@ -66,11 +66,41 @@ export default class DashboardController extends Controller {
       await this.bracelet.save();
 
       if (
-        ['stats', 'fitnessAge', 'activities', 'epochs'].includes(
+        ['stats', 'fitnessAge', 'activities', 'epochs', 'sleep'].includes(
           this.selectedDataType,
         )
       ) {
         this.data = this.bracelet.data;
+
+        if (this.selectedDataType === 'sleep') {
+          this.data.timeOffsetSleepRespiration = {
+            labels: Object.keys(this.bracelet.data.timeOffsetSleepRespiration),
+            datasets: [
+              {
+                label: 'Sleep Respiration (RPM)',
+                data: Object.values(
+                  this.bracelet.data.timeOffsetSleepRespiration,
+                ),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+              },
+            ],
+          };
+
+          this.data.timeOffsetSleepSpo2 = {
+            labels: Object.keys(this.bracelet.data.timeOffsetSleepSpo2),
+            datasets: [
+              {
+                label: 'Sleep SpO2 %',
+                data: Object.values(this.bracelet.data.timeOffsetSleepSpo2),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+              },
+            ],
+          };
+        }
       } else {
         this.data = {
           labels: Object.keys(this.bracelet.data),
