@@ -62,3 +62,25 @@
 .index-card-top {
   background-color: rgb(41, 37, 56);
 }
+
+@media (max-width: 768px) {
+  .outer-index-card {
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .index-card {
+    height: auto;
+    padding: 20px;
+  }
+
+  .index-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .index-card p {
+    font-size: 0.875rem;
+  }
+}

@@ -1,9 +1,11 @@
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   background-color: #f4f4f4;
   border-top: 1px solid #ddd;
+  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
 
   &-left,
   &-right {
@@ -13,11 +15,27 @@
     gap: 25px;
   }
 
+  &-center {
+    margin: 0 10px;
+  }
+
   &-right {
     justify-content: end;
   }
 
   .footer-link {
     text-decoration: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+    padding: 5px;
+
+    &-left,
+    &-right {
+      gap: 4px;
+    }
   }
 }

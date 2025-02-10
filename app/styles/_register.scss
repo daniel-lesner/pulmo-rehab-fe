@@ -14,7 +14,7 @@
 .register-title {
   padding-top: 30px;
   margin-bottom: 80px;
-  font-size: 24px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .register-form {

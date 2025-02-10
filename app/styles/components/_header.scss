@@ -16,7 +16,7 @@
 }
 
 .header-title {
-  font-size: 24px;
+  font-size: clamp(1.25rem, 4vw, 2rem);
   font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -25,6 +25,7 @@
   flex-direction: row;
   gap: 20px;
   padding-right: 20px;
+  font-size: clamp(0.85rem, 2vw, 1.25rem);
 }
 
 .header-menu-button {

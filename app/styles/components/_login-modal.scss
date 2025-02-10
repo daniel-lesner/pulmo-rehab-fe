@@ -38,7 +38,7 @@
 .login-modal-title {
   padding-top: 30px;
   margin-bottom: 80px;
-  font-size: 24px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .login-modal-form {
@@ -75,5 +75,17 @@
   &:active {
     background-color: rgba(162, 162, 162, 0.6);
     border-radius: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-modal-content {
+    max-width: 80%;
+    max-height: 90%;
+  }
+
+  .login-modal-title {
+    padding-top: 20px;
+    margin-bottom: 10vh;
   }
 }
