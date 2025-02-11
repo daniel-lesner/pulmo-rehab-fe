@@ -54,6 +54,8 @@
         value='activities'
         selected={{eq this.selectedDataType 'activities'}}
       >Activities</option>
+      <option value='moveiq' selected={{eq this.selectedDataType 'moveiq'}}>Move
+        Iq</option>
       <option
         value='epochs'
         selected={{eq this.selectedDataType 'epochs'}}
@@ -108,6 +110,8 @@
           <StatsTable @model={{this.data}} />
         {{else if (eq this.selectedDataType 'fitnessAge')}}
           <FitnessAgeCard @model={{this.data}} />
+        {{else if (eq this.selectedDataType 'moveiq')}}
+          <MoveIqTable @model={{this.data}} />
         {{else if (eq this.selectedDataType 'activities')}}
           <ActivitiesTable @model={{this.data}} />
         {{else if (eq this.selectedDataType 'epochs')}}

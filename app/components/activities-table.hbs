@@ -1,24 +1,77 @@
 <div class='stats-table'>
   <h2 class='stats-table-title'>Daily Stats</h2>
-  <table>
+  <table class='stats-table-content'>
     <thead>
       <tr>
         <th>Activity</th>
-        <th>Start Time (in minutes)</th>
-        <th>Duration (in minutes)</th>
+        <th>Activity Name</th>
+        <th>Duration (minutes)</th>
+        <th>Start Time</th>
+        <th>Average Heart Rate (bpm)</th>
+        <th>Max Heart Rate (bpm)</th>
+        <th>Average Speed (m/s)</th>
+        <th>Max Speed (m/s)</th>
+        <th>Average Pace (min/km)</th>
+        <th>Max Pace (min/km)</th>
+        <th>Average Cadence (steps/min)</th>
+        <th>Max Cadence (steps/min)</th>
+        <th>Active Calories</th>
+        <th>Distance (m)</th>
+        <th>Steps</th>
+        <th>Elevation Gain (m)</th>
+        <th>Elevation Loss (m)</th>
+        <th>Device Name</th>
+        <th>Starting Latitude</th>
+        <th>Starting Longitude</th>
+        <th>Web Upload</th>
       </tr>
     </thead>
     <tbody>
       {{#each @model as |entry|}}
         <tr>
           <td class='stats-metric-name'>{{entry.activityType}}</td>
-          <td class='stats-metric-data'>{{format-datetime
-              entry.startTimeInSeconds
-              entry.offsetInSeconds
-            }}</td>
+          <td class='stats-metric-name'>{{entry.activityName}}</td>
           <td class='stats-metric-name'>{{convert-seconds
               entry.durationInSeconds
             }}</td>
+          <td class='stats-metric-data'>{{format-datetime
+              entry.startTimeInSeconds
+              entry.startTimeOffsetInSeconds
+            }}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.averageHeartRateInBeatsPerMinute}} bpm</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.maxHeartRateInBeatsPerMinute}}</td>
+          <td class='stats-metric-name'>{{entry.averageSpeedInMetersPerSecond}}
+          </td>
+          <td class='stats-metric-name'>{{entry.maxSpeedInMetersPerSecond}}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.averagePaceInMinutesPerKilometer}} </td>
+          <td
+            class='stats-metric-name'
+          >{{entry.maxPaceInMinutesPerKilometer}}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.averageRunCadenceInStepsPerMinute}}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.maxRunCadenceInStepsPerMinute}}</td>
+          <td class='stats-metric-name'>{{entry.activeKilocalories}}</td>
+          <td class='stats-metric-name'>{{entry.distanceInMeters}}</td>
+          <td class='stats-metric-name'>{{entry.steps}}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.totalElevationGainInMeters}}</td>
+          <td
+            class='stats-metric-name'
+          >{{entry.totalElevationLossInMeters}}</td>
+          <td class='stats-metric-name'>{{entry.deviceName}}</td>
+          <td class='stats-metric-name'>{{entry.startingLatitudeInDegree}}</td>
+          <td class='stats-metric-name'>{{entry.startingLongitudeInDegree}}</td>
+          <td class='stats-metric-name'>{{if entry.isWebUpload 'Yes' 'No'}}</td>
         </tr>
       {{/each}}
     </tbody>
