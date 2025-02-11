@@ -1,14 +1,12 @@
 .register-container {
   display: flex;
   flex-direction: column;
-
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
-
+  height: auto;
   width: 600px;
-  max-width: 80%;
-  height: 40vh;
+  max-width: 95%;
+  margin-bottom: 40px;
 }
 
 .register-title {
@@ -40,6 +38,7 @@
   flex-wrap: wrap;
   gap: 5px;
   align-self: center;
+  width: max-content;
 
   input[type='checkbox'] {
     margin-top: 0px;
