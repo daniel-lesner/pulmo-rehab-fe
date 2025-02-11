@@ -1,18 +1,21 @@
+.stats-table-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
 .stats-table {
-  max-width: 800px;
+  max-width: calc(90vw - 300px);
   margin: 30px auto;
   padding: 20px;
+  margin-left: 300px;
+  margin-right: 100px;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
-  .stats-table-title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-  }
+  overflow: scroll;
 
   .stats-table-subtitle {
     font-size: 16px;
@@ -49,5 +52,12 @@
 
   .stats-metric-data {
     color: #777;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-table {
+    max-width: 100%;
+    margin: 0px;
   }
 }

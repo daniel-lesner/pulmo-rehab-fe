@@ -48,3 +48,14 @@
 .dashboard-info {
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .dashboard-left-menu {
+    position: static;
+  }
+}
