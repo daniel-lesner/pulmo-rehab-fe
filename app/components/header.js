@@ -6,8 +6,13 @@ import { tracked } from '@glimmer/tracking';
 export default class Header extends Component {
   @service router;
   @service session;
+  @service intl;
 
   @tracked isLoginModalOpen = false;
+
+  get languageSet() {
+    return this.intl._locale[0];
+  }
 
   @action
   logOut() {
@@ -23,5 +28,10 @@ export default class Header extends Component {
   @action
   closeLoginModal() {
     this.isLoginModalOpen = false;
+  }
+
+  @action
+  toggleLocale() {
+    this.intl.setLocale([this.languageSet === 'en-us' ? 'ro-ro' : 'en-us']);
   }
 }

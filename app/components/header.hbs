@@ -1,23 +1,36 @@
+<!-- app/templates/components/header.hbs (example) -->
 <div class='header-container'>
-  <LinkTo class='header-title' @route='index'>Pulmo-Rehab</LinkTo>
+  <div class='header-left'>
+    <LinkTo class='header-title' @route='index'>Pulmo-Rehab</LinkTo>
 
-  <div class='header-menu'>
+    <div class='header-right-button'>
+      <div
+        class='language-toggle
+          {{if (eq this.languageSet "en-us") "toggle-left" "toggle-right"}}'
+        {{on 'click' this.toggleLocale}}
+      >
+        <div class='toggle-switch'></div>
+        <span class='toggle-label en-label'>EN</span>
+        <span class='toggle-label ro-label'>RO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class='header-right'>
     {{#if this.session.isAuthenticated}}
       <LinkTo @route='my-account'>
         <BsIcon @name='person-circle' />
-        <span>My Account</span>
+        <span>{{t 'header.myAccount'}}</span>
       </LinkTo>
-      {{! <LinkTo @route='dashboard'>
-        <BsIcon @name='layout-sidebar' />
-        <span>Dashboard</span>
-      </LinkTo> }}
-      <div class='header-menu-button' {{on 'click' this.logOut}}>Log Out</div>
+      <div class='header-right-button' {{on 'click' this.logOut}}>{{t
+          'header.logOut'
+        }}</div>
     {{else}}
-      <div class='header-menu-button' {{on 'click' this.openLoginModal}}>Log In</div>
-      <div class='header-menu-button'>
-        <LinkTo @route='register'>
-          Register
-        </LinkTo>
+      <div class='header-right-button' {{on 'click' this.openLoginModal}}>{{t
+          'header.logIn'
+        }}</div>
+      <div class='header-right-button'>
+        <LinkTo @route='register'>{{t 'header.register'}}</LinkTo>
       </div>
     {{/if}}
   </div>

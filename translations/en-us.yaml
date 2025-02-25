@@ -1,0 +1,5 @@
+header:
+  myAccount: 'My Account'
+  logIn: 'Log In'
+  logOut: 'Log Out'
+  register: 'Register'

@@ -1,0 +1,5 @@
+header:
+  myAccount: 'Contul Meu'
+  logIn: 'Conectare'
+  logOut: 'Deconectare'
+  register: 'Înregistrare'
