@@ -15,7 +15,14 @@
       {{on 'change' this.onDateChange}}
     />
 
-    <label for='data-selection'>Type:</label>
+    <label for='data-selection'>Type:
+      <span>
+        <a href={{concat '/details#' this.selectedDataType}} target='_blank'>
+          <BsIcon @name='question-circle' />
+        </a>
+      </span>
+    </label>
+
     <select
       id='data-selection'
       class='select-field'

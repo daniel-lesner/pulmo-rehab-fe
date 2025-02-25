@@ -11,5 +11,6 @@ Router.map(function () {
   this.route('register');
   this.route('my-account');
   this.route('dashboard');
+  this.route('details');
   this.route('privacy-policy');
 });

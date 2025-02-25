@@ -32,13 +32,11 @@
   cursor: pointer;
 }
 
-/* app/styles/app.css (or any relevant stylesheet) */
-
 .language-toggle {
   position: relative;
   width: 70px;
   height: 30px;
-  background-color: rgb(181, 169, 252);
+  background-color: rgb(147, 129, 255);
   border-radius: 15px;
   cursor: pointer;
   display: inline-flex;
@@ -51,10 +49,9 @@
 .toggle-label {
   flex: 1;
   text-align: center;
-  // margin-left: -4px;
   font-size: 0.85rem;
   color: #333;
-  z-index: 1; /* ensure labels stay above the slider */
+  z-index: 1;
 }
 
 .en-label {
@@ -72,17 +69,15 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: rgb(147, 129, 255);
+  background-color: rgb(129, 107, 254);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
-/* If EN is active, keep the slider on the left */
 .toggle-left .toggle-switch {
   transform: translateX(0);
 }
 
-/* If RO is active, move the slider right */
 .toggle-right .toggle-switch {
   transform: translateX(40px);
 }
