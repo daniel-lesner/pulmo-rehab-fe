@@ -12,9 +12,7 @@
       <BsIcon @name='box-arrow-right' />
     </LinkTo>
     <button
-      class='btn delete-button'
-      {{on 'click' (fn this.removePatient @patient.id)}}
-      aria-label='Remove Patient'
+      class='btn delete-button' aria-label='Remove Patient' type="button" {{on 'click' (fn this.removePatient @patient.id)}}
     >
       <BsIcon @name='trash' class='text-danger' />
     </button>

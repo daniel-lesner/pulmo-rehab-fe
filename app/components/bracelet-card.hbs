@@ -18,9 +18,7 @@
       <span class='masked-api'>{{mask-credentials @model.tokenSecret}}</span>
     </p>
     <button
-      class='btn delete-button'
-      {{on 'click' (fn this.deleteBracelet @model.id)}}
-      aria-label='Delete Bracelet'
+      class='btn delete-button' aria-label='Delete Bracelet' type="button" {{on 'click' (fn this.deleteBracelet @model.id)}}
     >
       <BsIcon @name='trash' class='text-danger' />
     </button>
