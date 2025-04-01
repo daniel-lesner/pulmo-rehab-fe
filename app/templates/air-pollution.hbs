@@ -1,0 +1,24 @@
+<h2>Air Pollution</h2>
+
+{{#if this.latitude}}
+  <p><strong>Latitude:</strong> {{this.latitude}}</p>
+  <p><strong>Longitude:</strong> {{this.longitude}}</p>
+
+  {{#if this.model}}
+    <ul>
+      <li>CO: {{this.model.co}}</li>
+      <li>NO: {{this.model.no}}</li>
+      <li>NO₂: {{this.model.no2}}</li>
+      <li>O₃: {{this.model.o3}}</li>
+      <li>SO₂: {{this.model.so2}}</li>
+      <li>PM2.5: {{this.model.pm2_5}}</li>
+      <li>PM10: {{this.model.pm10}}</li>
+      <li>NH₃: {{this.model.nh3}}</li>
+    </ul>
+  {{else}}
+    <p>Loading air quality data...</p>
+  {{/if}}
+
+{{else}}
+  <p>Getting your location...</p>
+{{/if}}

@@ -1,5 +1,7 @@
-import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
+import { pluralize } from 'ember-inflector';
 import config from '../config/environment';
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
@@ -20,5 +22,9 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
 
   get host() {
     return config.APP.API_HOST;
+  }
+
+  pathForType(modelName) {
+    return pluralize(camelize(modelName));
   }
 }
