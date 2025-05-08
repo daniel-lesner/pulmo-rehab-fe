@@ -19,5 +19,6 @@ CMD ["nginx", "-g", "daemon off;"]
 FROM node:23 as dev
 WORKDIR /app
 COPY --from=build /app /app
+RUN npm install -g ember-cli
 EXPOSE 4200
 CMD ["ember", "serve", "--host", "0.0.0.0"]
