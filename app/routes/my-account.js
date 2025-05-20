@@ -22,6 +22,7 @@ export default class MyAccountRoute extends AuthenticatedRoute {
             doctor_id: 'null',
           },
         }),
+
         assignedUsers: this.store.query('user', {
           filter: {
             doctor_id: userId,
