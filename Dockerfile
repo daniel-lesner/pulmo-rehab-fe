@@ -1,24 +1,20 @@
-FROM node:23 AS build
-
+FROM node:23 AS base
 WORKDIR /app
 COPY package*.json ./
 RUN npm install -g ember-cli && npm install
 COPY . .
 
-ARG APP_ENV=development
-ENV APP_ENV=${ENVIRONMENT}
-
-RUN if [ "$APP_ENV" = "production" ]; then ember build --environment=production; fi
+FROM base AS prod
+ARG APP_ENV=production
+ENV APP_ENV=$APP_ENV
+RUN ember build --environment=production
 
 FROM nginx:alpine AS runtime
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=prod /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 4200
 CMD ["nginx", "-g", "daemon off;"]
 
-FROM node:23 AS dev
-WORKDIR /app
-COPY --from=build /app /app
-RUN npm install -g ember-cli
+FROM base AS dev
 EXPOSE 4200
 CMD ["ember", "serve", "--host", "0.0.0.0"]
