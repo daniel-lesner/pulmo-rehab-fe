@@ -3,3 +3,24 @@ header:
   logIn: 'Log In'
   logOut: 'Log Out'
   register: 'Register'
+  airPollution: 'Air Pollution'
+airPollution:
+  title: 'Air Pollution'
+  scale:
+    good: 'Good'
+    moderate: 'Moderate'
+    sensitive: 'Sensitive'
+    unhealthy: 'Unhealthy'
+    veryUnhealthy: 'Very Unhealthy'
+  pollutants:
+    Pollutant: 'Pollutant'
+    Value: 'Value (μg/m³)'
+    AQILevel: 'AQI Level'
+    Indicator: 'Indicator'
+  status:
+    loadingData: 'Loading air quality data...'
+    gettingLocation: 'Getting your location...'
+  location:
+    latitude: 'Latitude:'
+    longitude: 'Longitude:'
+  source: Data is taken from OpenWeatherMap API

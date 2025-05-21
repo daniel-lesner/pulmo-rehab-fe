@@ -64,32 +64,6 @@
   background-color: rgb(41, 37, 56);
 }
 
-.floating-air-button {
-  position: fixed;
-  top: 100px;
-  left: 100px;
-  background-color: #ffde59;
-  color: #1a1a1a;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  width: 180px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.floating-air-button:hover {
-  transform: scale(1.05);
-  background-color: #ffe97f;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
 @media (max-width: 768px) {
   .outer-index-card {
     max-width: 100%;
@@ -108,20 +82,6 @@
   }
 
   .index-card p {
-    font-size: 0.875rem;
-  }
-
-  .floating-air-button {
-    width: 180px;
-    height: auto;
-    font-size: 0.875rem;
-    padding: 10px 16px;
-    position: static;
-    top: auto;
-    left: auto;
-  }
-
-  .floating-air-button span {
     font-size: 0.875rem;
   }
 }

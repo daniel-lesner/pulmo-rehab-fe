@@ -1,52 +1,80 @@
-<h2 class='air-title'>Air Pollution</h2>
+<div class='air-pollution-container'>
+  <h2 class='air-title'>{{t 'airPollution.title'}}</h2>
 
-{{#if this.latitude}}
-  <div class='air-info-container'>
-    <div class='air-table-wrapper'>
+  {{#if this.latitude}}
+    <div class='air-info-container'>
       {{#if this.model}}
         <div class='air-scale-legend'>
-          <div class='scale-box aqi-1'>A<br /><small>Good</small></div>
-          <div class='scale-box aqi-2'>B<br /><small>Moderate</small></div>
-          <div class='scale-box aqi-3'>C<br /><small>Sensitive</small></div>
-          <div class='scale-box aqi-4'>D<br /><small>Unhealthy</small></div>
-          <div class='scale-box aqi-5'>E<br /><small>Very Unhealthy</small></div>
+          <div class='air-scale-box aqi-1'>A<br /><small>{{t
+                'airPollution.scale.good'
+              }}</small></div>
+          <div class='air-scale-box aqi-2'>B<br /><small>{{t
+                'airPollution.scale.moderate'
+              }}</small></div>
+          <div class='air-scale-box aqi-3'>C<br /><small>{{t
+                'airPollution.scale.sensitive'
+              }}</small></div>
+          <div class='air-scale-box aqi-4'>D<br /><small>{{t
+                'airPollution.scale.unhealthy'
+              }}</small></div>
+          <div class='air-scale-box aqi-5'>E<br /><small>{{t
+                'airPollution.scale.veryUnhealthy'
+              }}</small></div>
         </div>
 
-        <table class='air-table'>
-          <thead>
-            <tr>
-              <th>Pollutant</th>
-              <th>Value (μg/m³)</th>
-              <th>AQI Level</th>
-              <th>Indicator</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each this.pollutants as |p|}}
+        <div class='air-table-container'>
+          <table class='air-table'>
+            <thead>
               <tr>
-                <td>{{p.label}}</td>
-                <td>{{p.value}}</td>
-                <td class='aqi-value aqi-{{p.aqi}}'>{{p.aqiLabel}}</td>
-                <td>
-                  <div class='air-bar-container'>
-                    <div
-                      class='air-bar-fill aqi-{{p.aqi}}'
-                      style='width: {{p.percent}}%;'
-                    ></div>
-                  </div>
-                </td>
+                <th>{{t 'airPollution.pollutants.Pollutant'}}</th>
+                <th>{{t 'airPollution.pollutants.Value'}}</th>
+                <th>{{t 'airPollution.pollutants.AQILevel'}}</th>
+                <th>{{t 'airPollution.pollutants.Indicator'}}</th>
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      {{else}}
-        <p class='air-status'>Loading air quality data...</p>
-      {{/if}}
-      <p><strong>Latitude:</strong> {{this.latitude}}</p>
-      <p><strong>Longitude:</strong> {{this.longitude}}</p>
+            </thead>
+            <tbody>
+              {{#each this.pollutants as |p|}}
+                <tr>
+                  <td>{{p.label}}</td>
+                  <td>{{p.value}}</td>
+                  <td class='aqi-value aqi-{{p.aqi}}'>{{p.aqiLabel}}</td>
+                  <td>
+                    <div class='air-bar-container'>
+                      <div
+                        class='air-bar-fill aqi-{{p.aqi}}'
+                        style='width: {{p.percent}}%;'
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
 
+        <div class='air-footer'>
+          <div class='air-coordinates'>
+            <p><strong>{{t 'airPollution.location.latitude'}}</strong>
+              {{this.latitude}}</p>
+            <p><strong>{{t 'airPollution.location.longitude'}}</strong>
+              {{this.longitude}}</p>
+          </div>
+
+          <div class='air-source'>
+            <p><strong>{{t 'airPollution.source'}}</strong></p>
+            <p><strong><a
+                  href='https://openweathermap.org'
+                  target='_blank'
+                >https://opeweathermap.org
+                </a></strong></p>
+          </div>
+        </div>
+
+      {{else}}
+        <p class='air-status'>{{t 'airPollution.status.loadingData'}}</p>
+      {{/if}}
     </div>
-  </div>
-{{else}}
-  <p class='air-status'>Getting your location...</p>
-{{/if}}
+  {{else}}
+    <p class='air-status'>{{t 'airPollution.status.gettingLocation'}}</p>
+  {{/if}}
+</div>

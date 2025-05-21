@@ -3,3 +3,24 @@ header:
   logIn: 'Conectare'
   logOut: 'Deconectare'
   register: 'Înregistrare'
+  airPollution: 'Poluare'
+airPollution:
+  title: 'Calitatea aerului'
+  scale:
+    good: 'Bună'
+    moderate: 'Moderată'
+    sensitive: 'Sensibilă'
+    unhealthy: 'Nefavorabilă'
+    veryUnhealthy: 'Foarte neîncărcată'
+  pollutants:
+    Pollutant: 'Poluant'
+    Value: 'Valoare (μg/m³)'
+    AQILevel: 'Nivel AQI'
+    Indicator: 'Indicator'
+  status:
+    loadingData: 'Se încarcă date despre calitatea aerului…'
+    gettingLocation: 'Se determină locația…'
+  location:
+    latitude: 'Latitudine:'
+    longitude: 'Longitudine:'
+  source: Datele sunt preluate din API-ul OpenWeatherMap.

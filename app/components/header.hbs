@@ -16,6 +16,11 @@
   </div>
 
   <div class='header-right'>
+    <div class='header-right-button'>
+      <LinkTo class='header-right-pollution-button' @route='air-pollution'>{{t
+          'header.airPollution'
+        }}</LinkTo>
+    </div>
     {{#if this.session.isAuthenticated}}
       <LinkTo @route='my-account'>
         <BsIcon @name='person-circle' />
@@ -23,11 +28,13 @@
       </LinkTo>
       <div class='header-right-button' {{on 'click' this.logOut}}>{{t
           'header.logOut'
-        }}</div>
+        }}
+      </div>
     {{else}}
       <div class='header-right-button' {{on 'click' this.openLoginModal}}>{{t
           'header.logIn'
-        }}</div>
+        }}
+      </div>
       <div class='header-right-button'>
         <LinkTo @route='register'>{{t 'header.register'}}</LinkTo>
       </div>
