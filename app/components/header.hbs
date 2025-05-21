@@ -2,7 +2,7 @@
   <div class='header-left'>
     <LinkTo class='header-title' @route='index'>Pulmo-Rehab</LinkTo>
 
-    <div class='header-right-button'>
+    <div class='header-button'>
       <div
         class='language-toggle
           {{if (eq this.languageSet "en-us") "toggle-left" "toggle-right"}}'
@@ -16,8 +16,8 @@
   </div>
 
   <div class='header-right'>
-    <div class='header-right-button'>
-      <LinkTo class='header-right-pollution-button' @route='air-pollution'>{{t
+    <div class='header-button'>
+      <LinkTo class='header-pollution-button' @route='air-pollution'>{{t
           'header.airPollution'
         }}</LinkTo>
     </div>
@@ -26,16 +26,16 @@
         <BsIcon @name='person-circle' />
         <span>{{t 'header.myAccount'}}</span>
       </LinkTo>
-      <div class='header-right-button' {{on 'click' this.logOut}}>{{t
+      <div class='header-button' {{on 'click' this.logOut}}>{{t
           'header.logOut'
         }}
       </div>
     {{else}}
-      <div class='header-right-button' {{on 'click' this.openLoginModal}}>{{t
+      <div class='header-button' {{on 'click' this.openLoginModal}}>{{t
           'header.logIn'
         }}
       </div>
-      <div class='header-right-button'>
+      <div class='header-button'>
         <LinkTo @route='register'>{{t 'header.register'}}</LinkTo>
       </div>
     {{/if}}
