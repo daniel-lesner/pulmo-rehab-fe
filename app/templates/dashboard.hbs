@@ -1,9 +1,8 @@
 <h1 class='dashboard-title'>My Dashboard</h1>
-
 <hr class='horizontal-fade' />
 
 <div class='dashboard-layout'>
-  <div class='dashboard-left-menu'>
+  <aside class='dashboard-left-menu'>
     <SubmitButton @title='Generate' @onClick={{this.getData}} />
 
     <label for='date-picker'>Date:</label>
@@ -15,14 +14,17 @@
       {{on 'change' this.onDateChange}}
     />
 
-    <label for='data-selection'>Type:
-      <span>
-        <a href={{concat '/details#' this.selectedDataType}} target='_blank' rel="noopener noreferrer">
-          <BsIcon @name='question-circle' />
-        </a>
-      </span>
+    <label for='data-selection'>
+      Type:
+      <a
+        href={{concat '/details#' this.selectedDataType}}
+        target='_blank'
+        rel='noopener noreferrer'
+        class='info-icon'
+      >
+        <BsIcon @name='question-circle' />
+      </a>
     </label>
-
     <select
       id='data-selection'
       class='select-field'
@@ -81,67 +83,68 @@
         {{on 'change' this.onTimeIntervalInMinutesChange}}
       >
         <option
-          value={{60}}
+          value='60'
           selected={{eq this.selectedTimeIntervalInMinutes '60'}}
         >Hourly</option>
         <option
-          value={{30}}
+          value='30'
           selected={{eq this.selectedTimeIntervalInMinutes '30'}}
         >30 mins</option>
         <option
-          value={{15}}
+          value='15'
           selected={{eq this.selectedTimeIntervalInMinutes '15'}}
         >15 mins</option>
         {{#if this.shouldShowThreeMinInterval}}
           <option
-            value={{3}}
+            value='3'
             selected={{eq this.selectedTimeIntervalInMinutes '3'}}
           >3 mins</option>
         {{else}}
           <option
-            value={{2}}
+            value='2'
             selected={{eq this.selectedTimeIntervalInMinutes '2'}}
           >2 mins</option>
         {{/if}}
       </select>
     {{/if}}
-  </div>
+  </aside>
 
-  <div class='vertical-fade'></div>
-  <div class='dashboard-right-content'>
+  <main class='dashboard-right-content'>
     {{#if this.isDataLoading}}
       <div class='spinner'></div>
-    {{else}}
-      {{#if this.data}}
-        {{#if (eq this.selectedDataType 'stats')}}
-          <StatsTable @model={{this.data}} />
-        {{else if (eq this.selectedDataType 'fitnessAge')}}
-          <FitnessAgeCard @model={{this.data}} />
-        {{else if (eq this.selectedDataType 'moveiq')}}
-          <MoveIqTable @model={{this.data}} />
-        {{else if (eq this.selectedDataType 'activities')}}
-          <ActivitiesTable @model={{this.data}} />
-        {{else if (eq this.selectedDataType 'epochs')}}
-          <EpochsTable @model={{this.data}} />
-        {{else if (eq this.selectedDataType 'sleep')}}
-          <SleepTable @model={{this.data}} />
-          <SleepScoresTable @sleepScores={{this.data.sleepScores}} />
-          <EmberChart @type='line' @data={{this.data.timeOffsetSleepSpo2}} />
+    {{else if this.data}}
+      {{#if (eq this.selectedDataType 'stats')}}
+        <StatsTable @model={{this.data}} />
+      {{else if (eq this.selectedDataType 'fitnessAge')}}
+        <FitnessAgeCard @model={{this.data}} />
+      {{else if (eq this.selectedDataType 'moveiq')}}
+        <MoveIqTable @model={{this.data}} />
+      {{else if (eq this.selectedDataType 'activities')}}
+        <ActivitiesTable @model={{this.data}} />
+      {{else if (eq this.selectedDataType 'epochs')}}
+        <EpochsTable @model={{this.data}} />
+      {{else if (eq this.selectedDataType 'sleep')}}
+        <SleepTable @model={{this.data}} />
+        <SleepScoresTable @sleepScores={{this.data.sleepScores}} />
+        <EmberChart @type='line' @data={{this.data.timeOffsetSleepSpo2}} />
+        <EmberChart
+          @type='line'
+          @data={{this.data.timeOffsetSleepRespiration}}
+          className='dashboard-ember-chart'
+        />
+      {{else}}
+        <div class='dashboard-chart-wrapper'>
           <EmberChart
             @type='line'
-            @data={{this.data.timeOffsetSleepRespiration}}
+            @data={{this.data}}
+            className='dashboard-ember-chart'
           />
-        {{else}}
-          <div class='dashboard-chart'>
-            <EmberChart @type='line' @data={{this.data}} />
-          </div>
-        {{/if}}
-
-      {{else}}
-        <p class='dashboard-info'>No data available. Click "Generate" to fetch
-          it.</p>
+        </div>
       {{/if}}
+    {{else}}
+      <p class='dashboard-info'>
+        No data available. Click “Generate” to fetch it.
+      </p>
     {{/if}}
-  </div>
-
+  </main>
 </div>
