@@ -10,8 +10,8 @@ airPollution:
     good: 'Bună'
     moderate: 'Moderată'
     sensitive: 'Sensibilă'
-    unhealthy: 'Nefavorabilă'
-    veryUnhealthy: 'Foarte neîncărcată'
+    unhealthy: 'Rea'
+    veryUnhealthy: 'Foarte rea'
   pollutants:
     Pollutant: 'Poluant'
     Value: 'Valoare (μg/m³)'
