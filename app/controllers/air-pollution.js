@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 const POLLUTION_METRIC_RANGES = [
   {
@@ -55,6 +56,7 @@ const POLLUTION_METRIC_RANGES = [
 
 export default class AirPollutionController extends Controller {
   @service store;
+  @service toast;
 
   @tracked model = null;
   @tracked latitude = null;
@@ -62,9 +64,9 @@ export default class AirPollutionController extends Controller {
 
   constructor() {
     super(...arguments);
-    this.getLocation();
   }
 
+  @action
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -81,11 +83,14 @@ export default class AirPollutionController extends Controller {
           this.model = record;
         },
         (error) => {
-          console.error('Geolocation error:', error.message);
+          this.toast.error(
+            `Geolocation error: ${error.message}`,
+            'Please try again',
+          );
         },
       );
     } else {
-      console.error('Geolocation not supported by this browser.');
+      this.toast.error('Geolocation not supported by this browser.');
     }
   }
 

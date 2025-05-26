@@ -20,6 +20,7 @@ airPollution:
   status:
     loadingData: 'Loading air quality data...'
     gettingLocation: 'Getting your location...'
+    getLocationRequest: 'Please allow location access'
   location:
     latitude: 'Latitude:'
     longitude: 'Longitude:'

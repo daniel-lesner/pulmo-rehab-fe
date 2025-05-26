@@ -20,6 +20,7 @@ airPollution:
   status:
     loadingData: 'Se încarcă date despre calitatea aerului…'
     gettingLocation: 'Se determină locația…'
+    getLocationRequest: 'Permiteți accesul la locație'
   location:
     latitude: 'Latitudine:'
     longitude: 'Longitudine:'

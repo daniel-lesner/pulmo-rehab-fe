@@ -75,6 +75,11 @@
       {{/if}}
     </div>
   {{else}}
-    <p class='air-status'>{{t 'airPollution.status.gettingLocation'}}</p>
+    <p class='air-status'>
+      <SubmitButton
+        @title={{t 'airPollution.status.getLocationRequest'}}
+        @onClick={{this.getLocation}}
+      />
+    </p>
   {{/if}}
 </div>
