@@ -29,9 +29,9 @@
     @disabled={{not this.selectedUserId}}
   />
 
-  {{#each this.model.assignedUsers as |user|}}
-    {{#if user.bracelets}}
-      <div class='bracelet-grid'>
+  <div class='bracelet-grid'>
+    {{#each this.model.assignedUsers as |user|}}
+      {{#if user.bracelets}}
         {{#each user.bracelets as |bracelet|}}
           <PatientCard
             @patient={{user}}
@@ -39,9 +39,9 @@
             @removePatient={{this.removePatient}}
           />
         {{/each}}
-      </div>
-    {{/if}}
-  {{/each}}
+      {{/if}}
+    {{/each}}
+  </div>
 {{else}}
   <h1 class='my-account-title'>Bracelets List</h1>
 
@@ -66,7 +66,9 @@
 
   <button
     id='openModalBtn'
-    class='plus-button' type="button" {{on 'click' this.openBraceletFormModal}}
+    class='plus-button'
+    type='button'
+    {{on 'click' this.openBraceletFormModal}}
   >
     +
   </button>
