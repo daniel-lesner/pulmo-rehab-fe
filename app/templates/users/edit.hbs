@@ -1,0 +1,11 @@
+<h2>Edit User</h2>
+
+<form class='users-edit-form' {{on 'submit' this.save}}>
+  <label for='user-name'>Name: </label>
+  <Input id='user-name' @type='text' @value={{@model.name}} />
+
+  <label for='user-email'>Email:</label>
+  <Input id='user-email' @type='text' @value={{@model.email}} />
+
+  <button type='submit'>Save</button>
+</form>

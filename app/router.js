@@ -14,4 +14,10 @@ Router.map(function () {
   this.route('details');
   this.route('privacy-policy');
   this.route('air-pollution');
+
+  this.route('users', function () {
+    this.route('edit', {
+      path: '/:user_id',
+    });
+  });
 });
