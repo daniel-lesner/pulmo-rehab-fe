@@ -6,14 +6,12 @@ export default class MyAccountRoute extends AuthenticatedRoute {
   @service store;
   @service session;
 
-  model() {
-    const currentUser = this.session.data.authenticated;
-    const userId = currentUser.userId;
-    const isDoctor = currentUser.isDoctor;
+  user = this.session.data.authenticated;
 
-    if (isDoctor) {
+  model() {
+    if (this.user.isDoctor) {
       return hash({
-        doctor: this.store.findRecord('doctor', userId, {
+        doctor: this.store.findRecord('doctor', this.user.userId, {
           include: 'users',
         }),
 
@@ -25,7 +23,7 @@ export default class MyAccountRoute extends AuthenticatedRoute {
 
         assignedUsers: this.store.query('user', {
           filter: {
-            doctor_id: userId,
+            doctor_id: this.user.userId,
           },
           include: 'bracelets',
         }),

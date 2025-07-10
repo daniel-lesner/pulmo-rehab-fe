@@ -12,7 +12,7 @@ export default class MyAccountController extends Controller {
   @tracked isBraceletFormModalOpen = false;
   @tracked selectedUserId = '';
 
-  isDoctor = this.session.data.authenticated.isDoctor;
+  currentUser = this.session.data.authenticated;
 
   @action
   goHome() {

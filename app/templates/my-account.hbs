@@ -1,4 +1,6 @@
-{{#if this.isDoctor}}
+<LinkTo @route='users.edit' @model={{this.currentUser.userId}}>Edit user</LinkTo>
+
+{{#if this.currentUser.isDoctor}}
   <h1 class='my-account-title'>Patients List</h1>
 
   {{#if this.model.assignedUsers}}
