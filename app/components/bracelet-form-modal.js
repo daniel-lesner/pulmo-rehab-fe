@@ -46,6 +46,7 @@ export default class BraceletFormModalComponent extends Component {
 
       this.args.closeModal();
     } catch (error) {
+      error.errors.forEach((e) => this.toast.error(e.detail));
       this.toast.error('Something went wrong, please try again.');
     }
   }

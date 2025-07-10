@@ -38,8 +38,7 @@ export default class RegisterController extends Controller {
       this.toast.success('User has been created succesfully', 'Success');
       this.router.transitionTo('index');
     } catch (error) {
-      this.model.rollbackAttributes();
-      this.toast.error('Something went wrong, please try again', 'Error');
+      error.errors.forEach((err) => this.toast.error(err.detail, err.title));
     } finally {
       this.isFormLoading = false;
     }
