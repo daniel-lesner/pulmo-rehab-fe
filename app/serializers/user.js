@@ -8,6 +8,10 @@ export default class UserSerializer extends ApplicationSerializer {
       delete json.data.attributes.password;
     }
 
+    if (!json.data.attributes.passwordToken) {
+      delete json.data.attributes.passwordToken;
+    }
+
     return json;
   }
 }
