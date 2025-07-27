@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { hash } from 'rsvp';
 import AuthenticatedRoute from './authenticated';
 
@@ -6,7 +7,7 @@ export default class MyAccountRoute extends AuthenticatedRoute {
   @service store;
   @service session;
 
-  user = this.session.data.authenticated;
+  @tracked user = this.session.data.authenticated;
 
   model() {
     if (this.user.isDoctor) {

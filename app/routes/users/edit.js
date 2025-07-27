@@ -6,14 +6,20 @@ export default class UsersEditRoute extends Route {
   @service session;
   @service router;
 
-  model(params) {
-    if (params.user_id != this.session.data.authenticated.userId) {
-      return this.router.transitionTo('my-account');
+  async model(params) {
+    const currentUserId = this.session.data.authenticated.userId;
+
+    const user = await this.store.findRecord('user', params.user_id, {
+      include: 'healthDatum',
+    });
+
+    if (params.user_id == currentUserId || user.doctor.id == currentUserId) {
+      let healthDatum =
+        user.healthDatum || this.store.createRecord('health-datum', { user });
+
+      return { user, healthDatum };
     }
 
-    return this.store.findRecord(
-      'user',
-      this.session.data.authenticated.userId,
-    );
+    return this.router.transitionTo('my-account');
   }
 }

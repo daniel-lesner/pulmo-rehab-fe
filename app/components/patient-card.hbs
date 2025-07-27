@@ -11,8 +11,14 @@
     >
       <BsIcon @name='box-arrow-right' />
     </LinkTo>
+    <LinkTo class='patient-edit' @route='users.edit' @model={{@patient.id}}>
+      <BsIcon @name='pencil' />
+    </LinkTo>
     <button
-      class='btn delete-button' aria-label='Remove Patient' type="button" {{on 'click' (fn this.removePatient @patient.id)}}
+      class='btn delete-button'
+      aria-label='Remove Patient'
+      type='button'
+      {{on 'click' (fn this.removePatient @patient.id)}}
     >
       <BsIcon @name='trash' class='text-danger' />
     </button>

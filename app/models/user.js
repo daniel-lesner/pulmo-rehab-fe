@@ -8,4 +8,5 @@ export default class UserModel extends Model {
 
   @hasMany('bracelet', { async: true, inverse: null }) bracelets;
   @belongsTo('doctor', { async: false, inverse: null }) doctor;
+  @belongsTo('health-datum', { async: false, inverse: 'user' }) healthDatum;
 }

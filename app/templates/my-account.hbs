@@ -1,5 +1,3 @@
-<LinkTo @route='users.edit' @model={{this.currentUser.userId}}>Edit user</LinkTo>
-
 {{#if this.currentUser.isDoctor}}
   <h1 class='my-account-title'>Patients List</h1>
 
@@ -45,6 +43,14 @@
     {{/each}}
   </div>
 {{else}}
+  <LinkTo
+    class='my-account-edit-user-buttton'
+    @route='users.edit'
+    @model={{this.currentUser.userId}}
+  >
+    Edit user
+  </LinkTo>
+
   <h1 class='my-account-title'>Bracelets List</h1>
 
   {{#if this.model.bracelets}}

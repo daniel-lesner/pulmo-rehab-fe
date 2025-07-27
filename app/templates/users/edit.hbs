@@ -1,11 +1,133 @@
 <h2>Edit User</h2>
 
 <form class='users-edit-form' {{on 'submit' this.save}}>
-  <label for='user-name'>Name: </label>
-  <Input id='user-name' @type='text' @value={{@model.name}} />
+  <fieldset>
+    <legend>User info</legend>
 
-  <label for='user-email'>Email:</label>
-  <Input id='user-email' @type='text' @value={{@model.email}} />
+    <label for='user-name'>Name:</label>
+    <Input id='user-name' @type='text' @value={{@model.user.name}} />
 
-  <button type='submit'>Save</button>
+    <label for='user-email'>Email:</label>
+    <Input id='user-email' @type='email' @value={{@model.user.email}} />
+  </fieldset>
+
+  <fieldset>
+    <legend>Health Data</legend>
+
+    <label for='age'>Age:</label>
+    <Input id='age' @type='number' @value={{@model.healthDatum.age}} />
+
+    <label for='gender'>Gender:</label>
+    <select id='gender' {{on 'change' this.onGenderChange}}>
+      <option value=''>Select</option>
+      <option selected={{eq @model.healthDatum.gender 'Male'}}>Male</option>
+      <option selected={{eq @model.healthDatum.gender 'Female'}}>Female</option>
+    </select>
+
+    <label for='weight'>Weight (kg):</label>
+    <Input id='weight' @type='number' @value={{@model.healthDatum.weight}} />
+
+    <label for='height'>Height (m):</label>
+    <Input id='height' @type='number' @value={{@model.healthDatum.height}} />
+
+    <label for='smoker'>Smoker:</label>
+    <Input
+      id='smoker'
+      @type='checkbox'
+      @checked={{@model.healthDatum.smoker}}
+    />
+  </fieldset>
+
+  <fieldset>
+    <legend>Diagnosis</legend>
+
+    <label for='diagnosis'>Primary Diagnosis:</label>
+    <Input
+      id='diagnosis'
+      @type='text'
+      @value={{@model.healthDatum.primaryDiagnosis}}
+    />
+
+    <label for='copd'>COPD Stage:</label>
+    <Input id='copd' @type='text' @value={{@model.healthDatum.copdStage}} />
+
+    <label for='respiratory-failure'>Respiratory Failure:</label>
+    <Input
+      id='respiratory-failure'
+      @type='checkbox'
+      @checked={{@model.healthDatum.respiratoryFailure}}
+    />
+  </fieldset>
+
+  <fieldset>
+    <legend>Comorbidities</legend>
+
+    <label for='angina'>Angina:</label>
+    <Input id='angina' @type='text' @value={{@model.healthDatum.angina}} />
+
+    <label for='hypertension'>Hypertension:</label>
+    <Input
+      id='hypertension'
+      @type='text'
+      @value={{@model.healthDatum.hypertension}}
+    />
+
+    <label for='venous-insufficiency'>Venous Insufficiency:</label>
+    <Input
+      id='venous-insufficiency'
+      @type='checkbox'
+      @checked={{@model.healthDatum.venousInsufficiency}}
+    />
+  </fieldset>
+
+  <fieldset>
+    <legend>Vitals</legend>
+
+    <label for='spo2'>SpO₂ (%):</label>
+    <Input id='spo2' @type='number' @value={{@model.healthDatum.spo2}} />
+
+    <label for='bp'>Blood Pressure:</label>
+    <Input id='bp' @type='text' @value={{@model.healthDatum.bp}} />
+
+    <label for='hr'>Heart Rate (bpm):</label>
+    <Input id='hr' @type='number' @value={{@model.healthDatum.heartRate}} />
+  </fieldset>
+
+  <fieldset>
+    <legend>Spirometry</legend>
+
+    <label for='fev1'>FEV1 (%):</label>
+    <Input id='fev1' @type='number' @value={{@model.healthDatum.fev1}} />
+
+    <label for='ipb'>IPB (%):</label>
+    <Input id='ipb' @type='number' @value={{@model.healthDatum.ipb}} />
+
+    <label for='fvc'>FVC (%):</label>
+    <Input id='fvc' @type='number' @value={{@model.healthDatum.fvc}} />
+  </fieldset>
+
+  <fieldset>
+    <legend>Medication</legend>
+
+    <label for='biseptol'>Biseptol:</label>
+    <Input id='biseptol' @type='text' @value={{@model.healthDatum.biseptol}} />
+
+    <label for='laba-lama'>LABA/LAMA:</label>
+    <Input
+      id='laba-lama'
+      @type='checkbox'
+      @checked={{@model.healthDatum.labaLama}}
+    />
+
+    <label for='ics'>Inhaled Corticosteroids (ICS):</label>
+    <Input id='ics' @type='checkbox' @checked={{@model.healthDatum.ics}} />
+
+    <label for='acc'>ACC:</label>
+    <Input id='acc' @type='text' @value={{@model.healthDatum.acc}} />
+
+    <label for='ventolin'>Ventolin:</label>
+    <Input id='ventolin' @type='text' @value={{@model.healthDatum.ventolin}} />
+  </fieldset>
+
+  <SubmitButton @title='Save' />
 </form>
