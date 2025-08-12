@@ -11,6 +11,7 @@ export default class UsersEditRoute extends Route {
 
     const user = await this.store.findRecord('user', params.user_id, {
       include: 'healthDatum',
+      reload: true,
     });
 
     if (params.user_id == currentUserId || user.doctor.id == currentUserId) {
