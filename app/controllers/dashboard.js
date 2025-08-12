@@ -75,36 +75,35 @@ export default class DashboardController extends Controller {
           'sleep',
         ].includes(this.selectedDataType)
       ) {
-        this.data = this.bracelet.data;
+        this.data = this.bracelet?.data ?? {};
 
         if (this.selectedDataType === 'sleep') {
-          this.data.timeOffsetSleepRespiration = {
-            labels: Object.keys(this.bracelet.data.timeOffsetSleepRespiration),
-            datasets: [
-              {
-                label: 'Sleep Respiration (RPM)',
-                data: Object.values(
-                  this.bracelet.data.timeOffsetSleepRespiration,
-                ),
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1,
-              },
-            ],
+          const rawResp = this.bracelet?.data?.timeOffsetSleepRespiration ?? {};
+          const rawSpo2 = this.bracelet?.data?.timeOffsetSleepSpo2 ?? {};
+
+          const makeChart = (series, label) => {
+            const labels = series ? Object.keys(series) : [];
+            const values = series ? Object.values(series) : [];
+            return {
+              labels,
+              datasets: [
+                {
+                  label,
+                  data: values,
+                  fill: false,
+                  borderColor: 'rgb(75, 192, 192)',
+                  tension: 0.1,
+                },
+              ],
+            };
           };
 
-          this.data.timeOffsetSleepSpo2 = {
-            labels: Object.keys(this.bracelet.data.timeOffsetSleepSpo2),
-            datasets: [
-              {
-                label: 'Sleep SpO2 %',
-                data: Object.values(this.bracelet.data.timeOffsetSleepSpo2),
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1,
-              },
-            ],
-          };
+          this.data.timeOffsetSleepRespiration = makeChart(
+            rawResp,
+            'Sleep Respiration (RPM)',
+          );
+
+          this.data.timeOffsetSleepSpo2 = makeChart(rawSpo2, 'Sleep SpO2 %');
         }
       } else {
         this.data = {
