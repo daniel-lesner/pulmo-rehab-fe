@@ -14,6 +14,7 @@ Router.map(function () {
   this.route('details');
   this.route('privacy-policy');
   this.route('air-pollution');
+  this.route('ai-chat');
 
   this.route('users', function () {
     this.route('edit', {

@@ -17,9 +17,12 @@
 
   <div class='header-right'>
     <div class='header-button'>
-      <LinkTo class='header-pollution-button' @route='air-pollution'>{{t
-          'header.airPollution'
-        }}</LinkTo>
+      <LinkTo @route='air-pollution'>{{t 'header.airPollution'}}</LinkTo>
+    </div>
+    <div class='header-button'>
+      <LinkTo class='header-ai-button' @route='ai-chat'>
+        AI Exercises
+      </LinkTo>
     </div>
     {{#if this.session.isAuthenticated}}
       <LinkTo @route='my-account'>

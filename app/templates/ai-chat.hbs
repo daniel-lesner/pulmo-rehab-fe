@@ -1,0 +1,83 @@
+<div class='container py-4'>
+  <h1 class='h4 mb-3'>AI Chat – Exercises Recommendations</h1>
+
+  <div class='card shadow-sm'>
+    <div class='card-body'>
+      <div
+        class='mb-3 border rounded p-3 bg-light overflow-auto'
+        style='max-height: 24rem;'
+        {{did-insert this._scrollToBottom}}
+        {{did-update this._scrollToBottom this.messages}}
+      >
+        {{#each this.messages as |m|}}
+          <div
+            class='d-flex mb-2
+              {{if
+                (eq m.role "user")
+                "justify-content-end"
+                "justify-content-start"
+              }}'
+          >
+            <div
+              class='p-2 rounded
+                {{if
+                  (eq m.role "user")
+                  "bg-primary text-white"
+                  "bg-white border"
+                }}'
+            >
+              <p class='mb-0' style='white-space: pre-line;'>{{m.text}}</p>
+
+              {{#if m.suggestions}}
+                <ul class='mt-2 mb-0 ps-3'>
+                  {{#each m.suggestions as |s|}}
+                    <li class='small'>{{s}}</li>
+                  {{/each}}
+                </ul>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
+
+        {{#if this.loading}}
+          <div class='d-flex justify-content-start mb-2'>
+            <div class='p-2 rounded bg-white border'>
+              <div class='d-flex align-items-center gap-2'>
+                <div
+                  class='spinner-border spinner-border-sm'
+                  role='status'
+                  aria-hidden='true'
+                ></div>
+                <span class='small'>Thinking at what to recommend…</span>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      </div>
+
+      <div class='d-flex gap-2'>
+        <textarea
+          class='form-control'
+          placeholder='Say what groups you want to exercise (ex: I have a neck pain..)'
+          value={{this.input}}
+          {{on 'input' this.updateInput}}
+          {{on 'keydown' this.handleKeydown}}
+          rows='3'
+        ></textarea>
+
+        <button
+          type='button'
+          class='btn btn-primary align-self-start'
+          disabled={{this.loading}}
+          {{on 'click' this.send}}
+        >
+          Trimite
+        </button>
+      </div>
+
+      <p class='text-muted small mt-2 mb-0'>
+        Enter = trimite • Shift+Enter = linie nouă
+      </p>
+    </div>
+  </div>
+</div>
