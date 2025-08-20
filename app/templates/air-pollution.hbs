@@ -1,93 +1,126 @@
 <div class='air-pollution-container'>
-  <h2 class='air-title'>{{t 'airPollution.title'}}</h2>
+  <h2 class='air-title'>Air Pollution</h2>
 
-  <SubmitButton>
-    <LinkTo
-      @route='local-air-pollution'
-      style='color:black;text-decoration:none;'
-    >Tuya Air Pollution</LinkTo>
-  </SubmitButton>
+  <div class='mode-switch'>
+    <span class='switch-label-left'>Use OpenWeather API</span>
 
-  {{#if this.latitude}}
-    <div class='air-info-container'>
-      {{#if this.model}}
-        <div class='air-scale-legend'>
-          <div class='air-scale-box aqi-1'>A<br /><small>{{t
-                'airPollution.scale.good'
-              }}</small></div>
-          <div class='air-scale-box aqi-2'>B<br /><small>{{t
-                'airPollution.scale.moderate'
-              }}</small></div>
-          <div class='air-scale-box aqi-3'>C<br /><small>{{t
-                'airPollution.scale.sensitive'
-              }}</small></div>
-          <div class='air-scale-box aqi-4'>D<br /><small>{{t
-                'airPollution.scale.unhealthy'
-              }}</small></div>
-          <div class='air-scale-box aqi-5'>E<br /><small>{{t
-                'airPollution.scale.veryUnhealthy'
-              }}</small></div>
-        </div>
+    <label class='source-switch' aria-label='Select data source'>
+      <input
+        type='checkbox'
+        role='switch'
+        aria-checked={{if (eq this.mode 'local') 'true' 'false'}}
+        checked={{eq this.mode 'local'}}
+        {{on 'change' this.toggleSource}}
+      />
+      <span class='slider'></span>
+    </label>
 
-        <div class='air-table-container'>
-          <table class='air-table'>
-            <thead>
+    <span class='switch-label-right'>Use Tuya Device</span>
+  </div>
+
+  {{#if (eq this.mode 'openweather')}}
+    <div class='fetch-section'>
+      <SubmitButton
+        @title='Get Location & Fetch Remote Data'
+        @onClick={{this.getLocation}}
+      />
+    </div>
+  {{else}}
+    <div class='fetch-section'>
+      <Input
+        @value={{this.deviceId}}
+        placeholder='Enter Tuya device id'
+        class='input'
+      />
+      <SubmitButton @title='Fetch Local Data' @onClick={{this.fetchLocal}} />
+    </div>
+  {{/if}}
+
+  {{#if this.model}}
+    <div class='air-scale-legend'>
+      <div class='air-scale-box aqi-1'>A<br /><small>Good</small></div>
+      <div class='air-scale-box aqi-2'>B<br /><small>Moderate</small></div>
+      <div class='air-scale-box aqi-3'>C<br /><small>Sensitive</small></div>
+      <div class='air-scale-box aqi-4'>D<br /><small>Unhealthy</small></div>
+      <div class='air-scale-box aqi-5'>E<br /><small>Very Unhealthy</small></div>
+    </div>
+
+    {{! Pollutants }}
+    <div class='air-table-container'>
+      <table class='air-table'>
+        <thead>
+          <tr>
+            <th>Pollutant</th>
+            <th>Value</th>
+            <th>AQI Level</th>
+            <th>Indicator</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#if this.pollutants.length}}
+            {{#each this.pollutants as |p|}}
               <tr>
-                <th>{{t 'airPollution.pollutants.Pollutant'}}</th>
-                <th>{{t 'airPollution.pollutants.Value'}}</th>
-                <th>{{t 'airPollution.pollutants.AQILevel'}}</th>
-                <th>{{t 'airPollution.pollutants.Indicator'}}</th>
+                <td>{{p.label}}</td>
+                <td>{{p.value}}</td>
+                <td class='aqi-value aqi-{{p.aqi}}'>{{p.aqiLabel}}</td>
+                <td>
+                  <div class='air-bar-container'>
+                    <div
+                      class='air-bar-fill aqi-{{p.aqi}}'
+                      style='width: {{p.percent}}%;'
+                    ></div>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {{#each this.pollutants as |p|}}
-                <tr>
-                  <td>{{p.label}}</td>
-                  <td>{{p.value}}</td>
-                  <td class='aqi-value aqi-{{p.aqi}}'>{{p.aqiLabel}}</td>
-                  <td>
-                    <div class='air-bar-container'>
-                      <div
-                        class='air-bar-fill aqi-{{p.aqi}}'
-                        style='width: {{p.percent}}%;'
-                      ></div>
-                    </div>
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
+            {{/each}}
+          {{else}}
+            <tr>
+              <td colspan='4' style='text-align:center; padding:16px;'>
+                No pollutant values returned by the API.
+              </td>
+            </tr>
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
+
+    {{#if (eq this.mode 'local')}}
+      <div class='air-table-wrapper' style='margin-top:16px;'>
+        <h4>Local Sensor Readings</h4>
+        <table class='air-table'>
+          <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+          <tbody>
+            {{#each this.extras as |e|}}
+              <tr>
+                <td>{{e.label}}</td>
+                <td>{{e.value}}{{if e.unit (concat ' ' e.unit)}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{/if}}
+
+    <div class='air-footer'>
+      {{#if (eq this.mode 'openweather')}}
+        <div class='air-coordinates'>
+          <p><strong>Lat:</strong> {{this.latitude}}</p>
+          <p><strong>Lon:</strong> {{this.longitude}}</p>
         </div>
-
-        <div class='air-footer'>
-          <div class='air-coordinates'>
-            <p><strong>{{t 'airPollution.location.latitude'}}</strong>
-              {{this.latitude}}</p>
-            <p><strong>{{t 'airPollution.location.longitude'}}</strong>
-              {{this.longitude}}</p>
-          </div>
-
-          <div class='air-source'>
-            <p><strong>{{t 'airPollution.source'}}</strong></p>
-            <p><strong><a
-                  href='https://openweathermap.org'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >https://opeweathermap.org
-                </a></strong></p>
-          </div>
+        <div class='air-source'>
+          <p><strong>Source:</strong> OpenWeatherMap</p>
         </div>
-
       {{else}}
-        <p class='air-status'>{{t 'airPollution.status.loadingData'}}</p>
+        <div class='air-coordinates'>
+          <p><strong>Device:</strong> {{this.deviceId}}</p>
+          <p><strong>Timestamp:</strong> {{this.model.dt}}</p>
+        </div>
+        <div class='air-source'>
+          <p><strong>Source:</strong> Tuya (local device)</p>
+        </div>
       {{/if}}
     </div>
   {{else}}
-    <p class='air-status'>
-      <SubmitButton
-        @title={{t 'airPollution.status.getLocationRequest'}}
-        @onClick={{this.getLocation}}
-      />
-    </p>
+    <p class='air-status'>No data yet — fetch it above.</p>
   {{/if}}
 </div>
