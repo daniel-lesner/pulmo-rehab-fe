@@ -1,72 +1,182 @@
-.dashboard-title {
-  margin: 20px;
-  text-align: center;
+:root {
+  --shell-max: 1440px;
+  --sidebar-w: 320px;
+  --grid-gap: 18px;
 }
 
-.horizontal-fade {
-  border: none;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #000, transparent);
-  width: 100%;
-  margin: 0 auto 20px;
+.dashboard-shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 16px 24px 48px;
 }
 
-.dashboard-layout {
-  display: flex;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  gap: var(--grid-gap);
+  align-items: start;
 }
 
-.dashboard-left-menu {
-  position: fixed;
-  top: 200px;
-  left: 20px;
-  width: 240px;
-  height: 480px;
-  bottom: 20px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px;
+.sidebar {
+  position: sticky;
+  top: 88px;
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 16px;
+  display: grid;
+  gap: 14px;
 }
 
-.dashboard-right-content {
-  margin-left: calc(240px + 40px);
-  padding: 20px;
-  flex: 1;
+.content {
+  display: grid;
+  gap: 18px;
 }
 
-.dashboard-chart-wrapper {
+.table-card,
+.stats-table,
+.activities-table,
+.epochs-table {
   width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 16px;
   overflow-x: auto;
 }
 
-.dashboard-ember-chart,
-.dashboard-ember-chart svg {
+.table-card table,
+.stats-table-content {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.table-card th,
+.table-card td,
+.stats-table-content th,
+.stats-table-content td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+  white-space: nowrap;
+}
+
+.stats-table-content thead th {
+  background: #f6f6f8;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 7;
+}
+
+.stats-table-content .sticky-col.start {
+  position: sticky;
+  left: 0;
+  z-index: 9;
+  background: #fafafa;
+  box-shadow: 6px 0 6px -6px rgba(0, 0, 0, 0.12);
+}
+.stats-table-content .sticky-col.activity {
+  position: sticky;
+  left: var(--start-col-w, 120px);
+  z-index: 8;
+  background: #fff;
+  box-shadow: 6px 0 6px -6px rgba(0, 0, 0, 0.08);
+}
+
+.epochs-table table.stats-table-content,
+.activities-table table.stats-table-content {
+  --start-col-w: 120px;
+  --activity-col-w: 180px;
+  --duration-col-w: 170px;
+  --distance-col-w: 150px;
+
+  min-width: 1280px;
+
+  col.col-start {
+    width: var(--start-col-w);
+  }
+  col.col-activity {
+    width: var(--activity-col-w);
+  }
+
+  col.col-activity-name {
+    min-width: 220px;
+  }
+  col.col-duration {
+    width: var(--duration-col-w);
+  }
+  col.col-starttime {
+    width: 160px;
+  }
+  col.col-small {
+    min-width: 110px;
+  }
+  col.col-med {
+    min-width: 150px;
+  }
+  col.col-device {
+    min-width: 200px;
+  }
+  col.col-geo {
+    min-width: 140px;
+  }
+
+  col.col-distance {
+    width: var(--distance-col-w);
+  }
+}
+
+.th-wrap {
+  white-space: normal;
+  line-height: 1.2;
+}
+.th-nowrap {
+  white-space: nowrap;
+}
+
+.content {
+  grid-auto-rows: minmax(0, auto);
+}
+.content > * {
+  min-width: 0;
+  min-height: 0;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.panel.chart-card {
+  position: relative;
+  height: 520px;
+  padding: 12px;
+}
+
+.panel.chart-card canvas,
+.panel.chart-card svg {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  display: block;
 }
 
-.dashboard-info {
-  text-align: center;
-}
-
-@media (max-width: 1023px) {
-  .dashboard-layout {
-    flex-direction: column;
+@media (max-width: 1280px) {
+  .epochs-table table.stats-table-content,
+  .activities-table table.stats-table-content {
+    --duration-col-w: 180px;
   }
-  .dashboard-left-menu {
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
     position: static;
-    width: 100%;
-    bottom: auto;
-    margin-bottom: 20px;
-  }
-  .dashboard-right-content {
-    margin-left: 0;
-  }
-  .horizontal-fade {
-    margin-left: 0;
-    width: 100%;
   }
 }

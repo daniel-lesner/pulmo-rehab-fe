@@ -1,5 +1,10 @@
 import { helper } from '@ember/component/helper';
 
 export default helper(function convertSeconds([seconds]) {
-  return (seconds / 60).toFixed(2);
+  const s = Number(seconds || 0);
+
+  if (s <= 0) return '—';
+  const mins = Math.round(s / 60);
+
+  return String(mins);
 });

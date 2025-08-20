@@ -1,0 +1,56 @@
+<aside class='dashboard-left-menu'>
+  <SubmitButton @title='Generate' @onClick={{@onGenerate}} />
+
+  <label for='date-picker'>Date:</label>
+  <Input
+    id='date-picker'
+    class='select-field'
+    @type='date'
+    @value={{@selectedDate}}
+    {{on 'change' @onDateChange}}
+  />
+
+  <label for='data-selection'>
+    Type:
+    <a
+      href={{concat '/details#' @selectedDataType}}
+      target='_blank'
+      rel='noopener noreferrer'
+      class='info-icon'
+    >
+      <BsIcon @name='question-circle' />
+    </a>
+  </label>
+
+  <select
+    id='data-selection'
+    class='select-field'
+    {{on 'change' @onDataTypeSelect}}
+    value={{@selectedDataType}}
+  >
+    {{#each @dataTypes as |opt|}}
+      <option value={{opt.value}} selected={{eq opt.value @selectedDataType}}>
+        {{opt.label}}
+      </option>
+    {{/each}}
+  </select>
+
+  {{#if @shouldShowTimeInterval}}
+    <label for='time-interval'>Interval:</label>
+    <select
+      id='time-interval'
+      class='select-field'
+      {{on 'change' @onIntervalChange}}
+      value={{@selectedTimeInterval}}
+    >
+      {{#each @intervalOptions as |opt|}}
+        <option
+          value={{opt.value}}
+          selected={{eq opt.value @selectedTimeInterval}}
+        >
+          {{opt.label}}
+        </option>
+      {{/each}}
+    </select>
+  {{/if}}
+</aside>

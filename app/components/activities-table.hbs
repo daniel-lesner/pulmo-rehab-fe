@@ -1,78 +1,105 @@
 <h2 class='stats-table-title'>Activities</h2>
 
-<div class='stats-table'>
+<div class='activities-table'>
   <table class='stats-table-content'>
+    <colgroup>
+      <col class='col-start' />
+      <col class='col-activity' />
+      <col class='col-activity-name' />
+      <col class='col-duration' />
+      <col class='col-starttime' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-med' />
+      <col class='col-med' />
+      <col class='col-med' />
+      <col class='col-med' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-small' />
+      <col class='col-device' />
+      <col class='col-geo' />
+      <col class='col-geo' />
+      <col class='col-small' />
+    </colgroup>
+
     <thead>
       <tr>
-        <th>Activity</th>
+        <th class='sticky-col start'>Start Time</th>
+        <th class='sticky-col activity'>Activity</th>
         <th>Activity Name</th>
         <th>Duration (min)</th>
-        <th>Start Time</th>
-        <th>Average Heart Rate (bpm)</th>
-        <th>Max Heart Rate (bpm)</th>
-        <th>Average Speed (m/s)</th>
+        <th class='th-nowrap'>Start (full)</th>
+        <th>Avg HR</th>
+        <th>Max HR</th>
+        <th>Avg Speed (m/s)</th>
         <th>Max Speed (m/s)</th>
-        <th>Average Pace (min/km)</th>
-        <th>Max Pace (min/km)</th>
-        <th>Average Cadence (steps/min)</th>
-        <th>Max Cadence (steps/min)</th>
-        <th>Active Calories</th>
+        <th class='th-wrap'>Avg Pace (min/km)</th>
+        <th class='th-wrap'>Max Pace (min/km)</th>
+        <th class='th-wrap'>Avg Cadence (steps/min)</th>
+        <th class='th-wrap'>Max Cadence (steps/min)</th>
+        <th>Active Cal</th>
         <th>Distance (m)</th>
         <th>Steps</th>
-        <th>Elevation Gain (m)</th>
-        <th>Elevation Loss (m)</th>
+        <th>Elev ↑ (m)</th>
+        <th>Elev ↓ (m)</th>
         <th>Device Name</th>
-        <th>Starting Latitude</th>
-        <th>Starting Longitude</th>
+        <th class='th-wrap'>Start Lat</th>
+        <th class='th-wrap'>Start Lng</th>
         <th>Web Upload</th>
       </tr>
     </thead>
+
     <tbody>
       {{#each @model as |entry|}}
         <tr>
-          <td class='stats-metric-name'>{{entry.activityType}}</td>
-          <td class='stats-metric-name'>{{entry.activityName}}</td>
-          <td class='stats-metric-name'>{{convert-seconds
-              entry.durationInSeconds
-            }}</td>
-          <td class='stats-metric-data'>{{format-datetime
+          <td class='sticky-col start'>
+            {{format-time
               entry.startTimeInSeconds
               entry.startTimeOffsetInSeconds
-            }}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.averageHeartRateInBeatsPerMinute}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.maxHeartRateInBeatsPerMinute}}</td>
-          <td class='stats-metric-name'>{{entry.averageSpeedInMetersPerSecond}}
+            }}
           </td>
-          <td class='stats-metric-name'>{{entry.maxSpeedInMetersPerSecond}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.averagePaceInMinutesPerKilometer}} </td>
-          <td
-            class='stats-metric-name'
-          >{{entry.maxPaceInMinutesPerKilometer}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.averageRunCadenceInStepsPerMinute}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.maxRunCadenceInStepsPerMinute}}</td>
-          <td class='stats-metric-name'>{{entry.activeKilocalories}}</td>
-          <td class='stats-metric-name'>{{entry.distanceInMeters}}</td>
-          <td class='stats-metric-name'>{{entry.steps}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.totalElevationGainInMeters}}</td>
-          <td
-            class='stats-metric-name'
-          >{{entry.totalElevationLossInMeters}}</td>
-          <td class='stats-metric-name'>{{entry.deviceName}}</td>
-          <td class='stats-metric-name'>{{entry.startingLatitudeInDegree}}</td>
-          <td class='stats-metric-name'>{{entry.startingLongitudeInDegree}}</td>
-          <td class='stats-metric-name'>{{if entry.isWebUpload 'Yes' 'No'}}</td>
+          <td class='sticky-col activity'>{{entry.activityType}}</td>
+
+          <td>{{entry.activityName}}</td>
+          <td>{{convert-seconds entry.durationInSeconds}}</td>
+
+          <td>
+            {{format-datetime
+              entry.startTimeInSeconds
+              entry.startTimeOffsetInSeconds
+            }}
+          </td>
+
+          <td>{{entry.averageHeartRateInBeatsPerMinute}}</td>
+          <td>{{entry.maxHeartRateInBeatsPerMinute}}</td>
+
+          <td>{{num1 entry.averageSpeedInMetersPerSecond}}</td>
+          <td>{{num1 entry.maxSpeedInMetersPerSecond}}</td>
+
+          <td>{{num1 entry.averagePaceInMinutesPerKilometer}}</td>
+          <td>{{num1 entry.maxPaceInMinutesPerKilometer}}</td>
+
+          <td>{{num1 entry.averageRunCadenceInStepsPerMinute}}</td>
+          <td>{{num1 entry.maxRunCadenceInStepsPerMinute}}</td>
+
+          <td>{{entry.activeKilocalories}}</td>
+          <td>{{num1 entry.distanceInMeters}}</td>
+          <td>{{entry.steps}}</td>
+
+          <td>{{num1 entry.totalElevationGainInMeters}}</td>
+          <td>{{num1 entry.totalElevationLossInMeters}}</td>
+
+          <td>{{entry.deviceName}}</td>
+
+          <td>{{num1 entry.startingLatitudeInDegree}}</td>
+          <td>{{num1 entry.startingLongitudeInDegree}}</td>
+
+          <td>{{if entry.isWebUpload 'Yes' 'No'}}</td>
         </tr>
       {{/each}}
     </tbody>

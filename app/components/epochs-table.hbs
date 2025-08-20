@@ -1,43 +1,104 @@
-<h2 class='stats-table-title'>Epochs</h2>
+<div class='epochs-table'>
+  <table class='stats-table-content'>
+    <colgroup>
+      <col class='col-start' />
+      <col class='col-activity' />
+      <col class='col-duration' />
+      <col class='col-active-time' />
+      <col class='col-steps' />
+      <col class='col-distance' />
+      <col class='col-calories' />
+      <col class='col-met' />
+      <col class='col-intensity' />
+      <col class='col-mean' />
+      <col class='col-max' />
+    </colgroup>
 
-<div class='stats-table'>
-  <table>
     <thead>
       <tr>
-        <th>Activity</th>
-        <th>Start Time (in minutes)</th>
-        <th>Duration (in minutes)</th>
-        <th>Active Time (in minutes)</th>
+        <th class='sticky-col start'>Start Time</th>
+        <th class='sticky-col activity'>Activity</th>
+        <th>Duration (min)</th>
+        <th>Active Time</th>
         <th>Steps</th>
         <th>Distance (m)</th>
-        <th>Calories Burned</th>
+        <th>Calories</th>
         <th>MET</th>
         <th>Intensity</th>
-        <th>Mean Motion Intensity</th>
-        <th>Max Motion Intensity</th>
+        <th class='th-mean'>Mean Motion Intensity</th>
+        <th class='th-max'>Max Motion Intensity</th>
       </tr>
     </thead>
+
     <tbody>
       {{#each @model as |entry|}}
         <tr>
-          <td class='stats-metric-name'>{{entry.activityType}}</td>
-          <td class='stats-metric-data'>{{format-datetime
+          <td class='sticky-col start'>
+            {{format-time
               entry.startTimeInSeconds
               entry.startTimeOffsetInSeconds
-            }}</td>
-          <td class='stats-metric-data'>{{convert-seconds
-              entry.durationInSeconds
-            }}</td>
-          <td class='stats-metric-data'>{{convert-seconds
-              entry.activeTimeInSeconds
-            }}</td>
-          <td class='stats-metric-data'>{{entry.steps}}</td>
-          <td class='stats-metric-data'>{{entry.distanceInMeters}}</td>
-          <td class='stats-metric-data'>{{entry.activeKilocalories}}</td>
-          <td class='stats-metric-data'>{{entry.met}}</td>
-          <td class='stats-metric-data'>{{entry.intensity}}</td>
-          <td class='stats-metric-data'>{{entry.meanMotionIntensity}}</td>
-          <td class='stats-metric-data'>{{entry.maxMotionIntensity}}</td>
+            }}
+          </td>
+
+          <td class='sticky-col activity'>
+            {{entry.activityType}}
+          </td>
+
+          <td>
+            {{format-number
+              (convert-seconds entry.durationInSeconds)
+              decimals=1
+              trimIntegers=true
+            }}
+          </td>
+
+          <td>
+            {{format-number
+              (convert-seconds entry.activeTimeInSeconds)
+              decimals=1
+              trimIntegers=true
+            }}
+          </td>
+
+          <td>
+            {{or entry.steps '–'}}
+          </td>
+
+          <td>
+            {{format-number
+              entry.distanceInMeters
+              decimals=1
+              trimIntegers=true
+            }}
+          </td>
+
+          <td>
+            {{or entry.activeKilocalories '–'}}
+          </td>
+
+          <td>
+            {{format-number entry.met decimals=1 trimIntegers=true}}
+          </td>
+
+          <td>
+            {{entry.intensity}}
+          </td>
+
+          <td>
+            {{format-number
+              entry.meanMotionIntensity
+              decimals=1
+              trimIntegers=true
+            }}
+          </td>
+
+          <td>
+            {{format-number
+              entry.maxMotionIntensity
+              decimals=1
+              trimIntegers=true
+            }}
+          </td>
         </tr>
       {{/each}}
     </tbody>

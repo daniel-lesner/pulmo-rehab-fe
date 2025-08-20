@@ -1,0 +1,44 @@
+<main class='dashboard-right-content'>
+  {{#if @isLoading}}
+    <div class='spinner'></div>
+  {{else if @data}}
+    {{#if (eq @selectedDataType 'stats')}}
+      <StatsTable @model={{@data}} />
+    {{else if (eq @selectedDataType 'fitnessAge')}}
+      <FitnessAgeCard @model={{@data}} />
+    {{else if (eq @selectedDataType 'moveiq')}}
+      <MoveIqTable @model={{@data}} />
+    {{else if (eq @selectedDataType 'activities')}}
+      <ActivitiesTable @model={{@data}} />
+    {{else if (eq @selectedDataType 'epochs')}}
+      <EpochsTable @model={{@data}} />
+    {{else if (eq @selectedDataType 'sleep')}}
+      <SleepTable @model={{@data}} />
+      <SleepScoresTable @sleepScores={{@data.sleepScores}} />
+      {{#if @data.timeOffsetSleepSpo2}}
+        <div class='panel chart-card'>
+          <EmberChart @type='line' @data={{@data.timeOffsetSleepSpo2}} />
+        </div>
+      {{/if}}
+      {{#if @data.timeOffsetSleepRespiration}}
+        <div class='panel chart-card'>
+          <EmberChart
+            @type='line'
+            @data={{@data.timeOffsetSleepRespiration}}
+            className='dashboard-ember-chart'
+          />
+        </div>
+      {{/if}}
+    {{else}}
+      <div class='dashboard-chart-wrapper panel chart-card'>
+        <EmberChart
+          @type='line'
+          @data={{@data}}
+          className='dashboard-ember-chart'
+        />
+      </div>
+    {{/if}}
+  {{else}}
+    <p class='dashboard-info'>No data available. Click “Generate” to fetch it.</p>
+  {{/if}}
+</main>

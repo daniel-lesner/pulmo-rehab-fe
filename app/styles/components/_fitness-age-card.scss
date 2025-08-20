@@ -1,7 +1,8 @@
 .outer-fitness-age-card {
   display: flex;
-  gap: 200px;
-  align-items: baseline;
+  flex-wrap: wrap; // permite să cadă sub, pe mobil
+  gap: 24px; // nu 200px, mult mai echilibrat
+  align-items: start;
 }
 
 .fitness-age-card {
@@ -12,30 +13,30 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 240px;
-  height: 300px;
+  min-height: 300px;
   text-align: center;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-}
 
-.fitness-age-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 
-.fitness-age-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
-  color: white;
-}
+  h3 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: white;
+  }
 
-.fitness-age-card p {
-  margin: 0;
-  color: white;
-  font-size: 1rem;
-}
+  p {
+    margin: 0;
+    color: white;
+    font-size: 1rem;
+  }
 
-.fitness-age-card-bottom {
-  background-color: rgb(147, 129, 255);
+  &-bottom {
+    background-color: rgb(147, 129, 255);
+  }
 }

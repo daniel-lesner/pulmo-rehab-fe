@@ -1,49 +1,61 @@
-<div class='stats-table'>
-  <h2 class='stats-title'>Sleep Summary</h2>
+<div class='table-card'>
+  <h2 class='stats-table-title'>Sleep Summary</h2>
   <table>
-    <thead>
-      <tr>
-        <th>Start Time</th>
-        <th>Total Sleep (h)</th>
-        <th>Deep Sleep (min)</th>
-        <th>Light Sleep (min)</th>
-        <th>REM Sleep (min)</th>
-        <th>Awake Time (min)</th>
-        <th>Total Nap Duration (min)</th>
-        <th>Total Unmeasurable Time (in minutes)</th>
-        <th>Overall Sleep Score</th>
-      </tr>
-    </thead>
     <tbody>
       <tr>
-        <td class='metric-data'>{{format-datetime
+        <th>Start Time</th>
+        <td>
+          {{format-datetime
             @model.startTimeInSeconds
             @model.startTimeOffsetInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds-to-hours
-            @model.durationInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.deepSleepDurationInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.lightSleepDurationInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.remSleepInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.awakeDurationInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.totalNapDurationInSeconds
-          }}</td>
-        <td class='metric-data'>{{convert-seconds
-            @model.unmeasurableSleepInSeconds
-          }}</td>
-        <td class='metric-data'>{{@model.overallSleepScore.value}}
-          ({{@model.overallSleepScore.qualifierKey}})</td>
+          }}
+        </td>
       </tr>
-    </tbody>@
+
+      <tr>
+        <th>Total Sleep</th>
+        <td>{{format-min-hours @model.durationInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Deep Sleep</th>
+        <td>{{format-min-hours @model.deepSleepDurationInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Light Sleep</th>
+        <td>{{format-min-hours @model.lightSleepDurationInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>REM Sleep</th>
+        <td>{{format-min-hours @model.remSleepInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Awake Time</th>
+        <td>{{format-min-hours @model.awakeDurationInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Total Nap Duration</th>
+        <td>{{format-min-hours @model.totalNapDurationInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Total Unmeasurable Time</th>
+        <td>{{format-min-hours @model.unmeasurableSleepInSeconds}}</td>
+      </tr>
+
+      <tr>
+        <th>Overall Sleep Score</th>
+        <td>
+          {{#if @model.overallSleepScore}}
+            {{@model.overallSleepScore.value}}
+            ({{@model.overallSleepScore.qualifierKey}})
+          {{else}}-{{/if}}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -1,150 +1,133 @@
-<h1 class='dashboard-title'>My Dashboard</h1>
-<hr class='horizontal-fade' />
+<section class='dashboard-shell'>
+  <h1 class='dashboard-title'>My Dashboard</h1>
+  <hr class='horizontal-fade' />
 
-<div class='dashboard-layout'>
-  <aside class='dashboard-left-menu'>
-    <SubmitButton @title='Generate' @onClick={{this.getData}} />
+  <div class='dashboard-grid'>
+    <aside class='panel sidebar'>
+      <SubmitButton
+        @title='Generate'
+        @onClick={{this.getData}}
+        class='w-full'
+      />
 
-    <label for='date-picker'>Date:</label>
-    <Input
-      id='date-picker'
-      class='select-field'
-      @value={{this.selectedDate}}
-      @type='date'
-      {{on 'change' this.onDateChange}}
-    />
-
-    <label for='data-selection'>
-      Type:
-      <a
-        href={{concat '/details#' this.selectedDataType}}
-        target='_blank'
-        rel='noopener noreferrer'
-        class='info-icon'
-      >
-        <BsIcon @name='question-circle' />
-      </a>
-    </label>
-    <select
-      id='data-selection'
-      class='select-field'
-      {{on 'change' this.onDataTypeSelect}}
-    >
-      <option value='stats' selected={{eq this.selectedDataType 'stats'}}>
-        Daily Stats
-      </option>
-      <option
-        value='heartRate'
-        selected={{eq this.selectedDataType 'heartRate'}}
-      >Heart Rate</option>
-      <option value='hrv' selected={{eq this.selectedDataType 'hrv'}}>Heart Rate
-        Variability</option>
-      <option
-        value='stress'
-        selected={{eq this.selectedDataType 'stress'}}
-      >Stress</option>
-      <option
-        value='bodyBatteryLevel'
-        selected={{eq this.selectedDataType 'bodyBatteryLevel'}}
-      >Body Battery Level</option>
-      <option
-        value='spo2'
-        selected={{eq this.selectedDataType 'spo2'}}
-      >SpO2</option>
-      <option
-        value='respiration'
-        selected={{eq this.selectedDataType 'respiration'}}
-      >Respiration</option>
-      <option
-        value='sleep'
-        selected={{eq this.selectedDataType 'sleep'}}
-      >Sleep</option>
-      <option
-        value='activities'
-        selected={{eq this.selectedDataType 'activities'}}
-      >Activities</option>
-      <option value='moveiq' selected={{eq this.selectedDataType 'moveiq'}}>Move
-        IQ</option>
-      <option
-        value='epochs'
-        selected={{eq this.selectedDataType 'epochs'}}
-      >Epochs</option>
-      <option
-        value='fitnessAge'
-        selected={{eq this.selectedDataType 'fitnessAge'}}
-      >Fitness Age</option>
-    </select>
-
-    {{#if this.shouldShowTimeInterval}}
-      <label for='time-interval'>Interval:</label>
-      <select
-        id='time-interval'
-        class='select-field'
-        {{on 'change' this.onTimeIntervalInMinutesChange}}
-      >
-        <option
-          value='60'
-          selected={{eq this.selectedTimeIntervalInMinutes '60'}}
-        >Hourly</option>
-        <option
-          value='30'
-          selected={{eq this.selectedTimeIntervalInMinutes '30'}}
-        >30 mins</option>
-        <option
-          value='15'
-          selected={{eq this.selectedTimeIntervalInMinutes '15'}}
-        >15 mins</option>
-        {{#if this.shouldShowThreeMinInterval}}
-          <option
-            value='3'
-            selected={{eq this.selectedTimeIntervalInMinutes '3'}}
-          >3 mins</option>
-        {{else}}
-          <option
-            value='2'
-            selected={{eq this.selectedTimeIntervalInMinutes '2'}}
-          >2 mins</option>
-        {{/if}}
-      </select>
-    {{/if}}
-  </aside>
-
-  <main class='dashboard-right-content'>
-    {{#if this.isDataLoading}}
-      <div class='spinner'></div>
-    {{else if this.data}}
-      {{#if (eq this.selectedDataType 'stats')}}
-        <StatsTable @model={{this.data}} />
-      {{else if (eq this.selectedDataType 'fitnessAge')}}
-        <FitnessAgeCard @model={{this.data}} />
-      {{else if (eq this.selectedDataType 'moveiq')}}
-        <MoveIqTable @model={{this.data}} />
-      {{else if (eq this.selectedDataType 'activities')}}
-        <ActivitiesTable @model={{this.data}} />
-      {{else if (eq this.selectedDataType 'epochs')}}
-        <EpochsTable @model={{this.data}} />
-      {{else if (eq this.selectedDataType 'sleep')}}
-        <SleepTable @model={{this.data}} />
-        <SleepScoresTable @sleepScores={{this.data.sleepScores}} />
-        <EmberChart @type='line' @data={{this.data.timeOffsetSleepSpo2}} />
-        <EmberChart
-          @type='line'
-          @data={{this.data.timeOffsetSleepRespiration}}
-          className='dashboard-ember-chart'
+      <div class='field'>
+        <label for='date-picker'>Date:</label>
+        <Input
+          id='date-picker'
+          class='select-field w-full'
+          @type='date'
+          @value={{this.selectedDate}}
+          {{on 'change' this.onDateChange}}
         />
-      {{else}}
-        <div class='dashboard-chart-wrapper'>
-          <EmberChart
-            @type='line'
-            @data={{this.data}}
-            className='dashboard-ember-chart'
-          />
+      </div>
+
+      <div class='field'>
+        <label for='data-selection'>
+          Type:
+          <a
+            href={{concat '/details#' this.selectedDataType}}
+            target='_blank'
+            rel='noopener'
+            class='info-icon'
+          >
+            <BsIcon @name='question-circle' />
+          </a>
+        </label>
+        <select
+          id='data-selection'
+          class='select-field w-full'
+          value={{this.selectedDataType}}
+          {{on 'change' this.onDataTypeSelect}}
+        >
+          <option value='stats'>Daily Stats</option>
+          <option value='heartRate'>Heart Rate</option>
+          <option value='hrv'>Heart Rate Variability</option>
+          <option value='stress'>Stress</option>
+          <option value='bodyBatteryLevel'>Body Battery Level</option>
+          <option value='spo2'>SpO2</option>
+          <option value='respiration'>Respiration</option>
+          <option value='sleep'>Sleep</option>
+          <option value='activities'>Activities</option>
+          <option value='moveiq'>Move IQ</option>
+          <option value='epochs'>Epochs</option>
+          <option value='fitnessAge'>Fitness Age</option>
+        </select>
+      </div>
+
+      {{#if this.shouldShowTimeInterval}}
+        <div class='field'>
+          <label for='time-interval'>Interval:</label>
+          <select
+            id='time-interval'
+            class='select-field w-full'
+            value={{this.selectedTimeIntervalInMinutes}}
+            {{on 'change' this.onTimeIntervalInMinutesChange}}
+          >
+            <option value='60'>Hourly</option>
+            <option value='30'>30 mins</option>
+            <option value='15'>15 mins</option>
+            {{#if this.shouldShowThreeMinInterval}}
+              <option value='3'>3 mins</option>
+            {{else}}
+              <option value='2'>2 mins</option>
+            {{/if}}
+          </select>
         </div>
       {{/if}}
-    {{else}}
-      <p class='dashboard-info'>
-        No data available. Click “Generate” to fetch it.
-      </p>
-    {{/if}}
-  </main>
-</div>
+    </aside>
+
+    <main class='content'>
+      {{#if this.isDataLoading}}
+        <div class='spinner'></div>
+      {{else if this.data}}
+        {{#if (eq this.selectedDataType 'stats')}}
+          <div class='panel card'>
+            <StatsTable @model={{this.data}} />
+          </div>
+        {{else if (eq this.selectedDataType 'fitnessAge')}}
+          <div class='panel card'><FitnessAgeCard @model={{this.data}} /></div>
+        {{else if (eq this.selectedDataType 'moveiq')}}
+          <div class='panel card'><MoveIqTable @model={{this.data}} /></div>
+        {{else if (eq this.selectedDataType 'activities')}}
+          <div class='panel card'><ActivitiesTable @model={{this.data}} /></div>
+        {{else if (eq this.selectedDataType 'epochs')}}
+          <div class='panel card'><EpochsTable @model={{this.data}} /></div>
+        {{else if (eq this.selectedDataType 'sleep')}}
+          <div class='panel card'><SleepTable @model={{this.data}} /></div>
+          <div class='panel card'><SleepScoresTable
+              @sleepScores={{this.data.sleepScores}}
+            /></div>
+          {{#if this.data.timeOffsetSleepSpo2}}
+            <div class='panel chart-card'>
+              <EmberChart
+                @type='line'
+                @data={{this.data.timeOffsetSleepSpo2}}
+                @options={{hash maintainAspectRatio=false}}
+              />
+            </div>
+          {{/if}}
+          {{#if this.data.timeOffsetSleepRespiration}}
+            <div class='panel chart-card'>
+              <EmberChart
+                @type='line'
+                @data={{this.data.timeOffsetSleepRespiration}}
+                @options={{hash maintainAspectRatio=false}}
+              />
+            </div>
+          {{/if}}
+        {{else}}
+          <div class='panel chart-card'>
+            <EmberChart
+              @type='line'
+              @data={{this.data}}
+              @options={{hash maintainAspectRatio=false}}
+            />
+          </div>
+        {{/if}}
+      {{else}}
+        <p class='dashboard-info'>No data available. Click “Generate” to fetch
+          it.</p>
+      {{/if}}
+    </main>
+  </div>
+</section>
