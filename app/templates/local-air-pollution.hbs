@@ -1,0 +1,107 @@
+<div class='air-pollution-container'>
+  <h2 class='air-title'>Tuya Air Pollution</h2>
+
+  <SubmitButton @style=''>
+    <LinkTo
+      @route='air-pollution'
+      style='color:black;text-decoration:none;'
+    >OpenWeatherMap Localised API</LinkTo>
+  </SubmitButton>
+
+  <div
+    style='display:flex; gap:8px; justify-content:center; margin: 10px 0 20px;'
+  >
+    <Input
+      @value={{this.deviceId}}
+      placeholder='Enter Tuya device id'
+      class='input'
+      style='min-width: 280px'
+    />
+    <SubmitButton
+      @title='Fetch local data'
+      @style='color:black;'
+      @onClick={{this.fetchLocal}}
+    />
+
+  </div>
+
+  <div class='air-info-container'>
+    {{#if this.model}}
+      <div class='air-scale-legend'>
+        <div class='air-scale-box aqi-1'>A<br /><small>Good</small></div>
+        <div class='air-scale-box aqi-2'>B<br /><small>Moderate</small></div>
+        <div class='air-scale-box aqi-3'>C<br /><small>Sensitive</small></div>
+        <div class='air-scale-box aqi-4'>D<br /><small>Unhealthy</small></div>
+        <div class='air-scale-box aqi-5'>E<br /><small>Very Unhealthy</small></div>
+      </div>
+
+      <div class='air-table-container'>
+        <table class='air-table'>
+          <thead>
+            <tr>
+              <th>Pollutant</th>
+              <th>Value</th>
+              <th>AQI Level</th>
+              <th>Indicator</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.pollutants as |p|}}
+              <tr>
+                <td>{{p.label}}</td>
+                <td>{{p.value}}</td>
+                <td class='aqi-value aqi-{{p.aqi}}'>{{p.aqiLabel}}</td>
+                <td>
+                  <div class='air-bar-container'>
+                    <div
+                      class='air-bar-fill aqi-{{p.aqi}}'
+                      style='width: {{p.percent}}%;'
+                    ></div>
+                  </div>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <div
+        class='air-table-wrapper'
+        style='margin-top: 16px; align-self:center; max-width: 800px;'
+      >
+        <h4 style='margin: 0 0 8px; text-align:center;'>Local Sensor Readings</h4>
+        <table class='air-table'>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.extras as |e|}}
+              <tr>
+                <td>{{e.label}}</td>
+                <td>{{e.value}}{{if e.unit (concat ' ' e.unit)}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      <div class='air-footer'>
+        <div class='air-coordinates'>
+          <p><strong>Device</strong> {{this.deviceId}}</p>
+          <p><strong>Timestamp</strong> {{this.model.dt}}</p>
+        </div>
+
+        <div class='air-source'>
+          <p><strong>Source</strong></p>
+          <p><strong>Tuya (local device)</strong></p>
+        </div>
+      </div>
+    {{else}}
+      <p class='air-status'>Click “Fetch local data” to load your device
+        readings.</p>
+    {{/if}}
+  </div>
+</div>

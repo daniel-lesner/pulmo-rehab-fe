@@ -1,8 +1,31 @@
-<button
-  class='submit-button'
-  type='submit'
-  disabled={{@disabled}}
-  {{on 'click' this.handleClick}}
->
-  {{@title}}
-</button>
+{{#if @route}}
+  <LinkTo
+    @route={{@route}}
+    @model={{@model}}
+    @query={{@query}}
+    class='submit-button {{@class}}'
+    style={{@style}}
+    ...attributes
+  >
+    {{#if (has-block)}}
+      {{yield}}
+    {{else}}
+      {{@title}}
+    {{/if}}
+  </LinkTo>
+{{else}}
+  <button
+    class='submit-button {{@class}}'
+    style={{@style}}
+    type={{if (has-block) 'button' (or @type 'submit')}}
+    disabled={{@disabled}}
+    {{on 'click' this.handleClick}}
+    ...attributes
+  >
+    {{#if (has-block)}}
+      {{yield}}
+    {{else}}
+      {{@title}}
+    {{/if}}
+  </button>
+{{/if}}

@@ -1,6 +1,13 @@
 <div class='air-pollution-container'>
   <h2 class='air-title'>{{t 'airPollution.title'}}</h2>
 
+  <SubmitButton>
+    <LinkTo
+      @route='local-air-pollution'
+      style='color:black;text-decoration:none;'
+    >Tuya Air Pollution</LinkTo>
+  </SubmitButton>
+
   {{#if this.latitude}}
     <div class='air-info-container'>
       {{#if this.model}}
@@ -64,7 +71,8 @@
             <p><strong>{{t 'airPollution.source'}}</strong></p>
             <p><strong><a
                   href='https://openweathermap.org'
-                  target='_blank' rel="noopener noreferrer"
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >https://opeweathermap.org
                 </a></strong></p>
           </div>
